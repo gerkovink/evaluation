@@ -18,6 +18,8 @@ knitr::opts_chunk$set(echo = TRUE)
 - expand convergence section
 - add RMSE
 - add insights from literature review for chapter on missing data in EHR
+- add link to simulation script, and $n$
+- add simulation results
 
 # Introduction
 
