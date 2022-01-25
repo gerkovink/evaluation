@@ -11,11 +11,19 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# TO DO
+
+- add ADEMP paper [@morr18], diagnostic checking paper [@zhao22]
+- add PPC (refer to Mingyang, and Gelman & King)
+- expand convergence section
+- add RMSE
+- add insights from literature review for chapter on missing data in EHR
+
 # Introduction
 
-Multiple imputation @rubin1987 is a state-of-the-art technique for drawing valid conclusions from incomplete data, and is increasingly used in many substantive fields, such as medicine see e.g. @pulkki2015cumulative, @alkire2015global, @stinesen2015reduced, psychology e.g., @sorbi2014medium, economics e.g., @wong2015economic, @dafoe2013democratic, @allan2015determinants, sociology e.g., @crowley2014flexible, @de2014religiosity and official statistics e.g., @little2012calibrated, @klausch2015selection. 
+Multiple imputation @rubin1987 is a state-of-the-art technique for drawing valid conclusions from incomplete data, and is increasingly used in many substantive fields, such as medicine [see e.g. @pulkki2015cumulative; @alkire2015global; @stinesen2015reduced], psychology [e.g. @sorbi2014medium], economics [e.g. @wong2015economic; @dafoe2013democratic; @allan2015determinants], sociology [e.g. @crowley2014flexible; @de2014religiosity], and official statistics [e.g. @little2012calibrated; @klausch2015selection]. 
 
-The technique has earned a permanent spot in research and policy making, demonstrated e.g. by the detailed manual created by the National Research Council @little2012prevention. Although a top-down enforcement of valid ways to handle missing data is not yet very pronounced, an increasing amount of researchers are embracing multiple imputation techniques. After all, the principle of multiple imputation is very intuitive.
+The technique has earned a permanent spot in research and policy making, demonstrated e.g. by the detailed manual created by the National Research Council [@little2012prevention]. Although a top-down enforcement of valid ways to handle missing data is not yet very pronounced, an increasing amount of researchers are embracing multiple imputation techniques. After all, the principle of multiple imputation is very intuitive.
 
 The idea behind multiple imputation is to impute (fill in) the missing values multiple times to obtain a valid estimate of what could have been. The multiple datasets that are thus obtained can be analyzed by standard techniques and the analysis results can be combined into a single inference. In contrast to ad hoc methods for dealing with missing values (e.g. list-wise deletion, mean imputation, regression imputation, last observation carried forward), multiple imputation properly takes the sources of uncertainty that are related to the missingness problem into account.
 
@@ -33,7 +41,7 @@ As of today, there is no consensus on how to perform simulation studies to evalu
 
 ## Data generation problems
 
-To evaluate the ability of an imputation routine to handle the nonresponse model, a form of truth has to be established. Those who perform simulation studies are in the luxury position to establish the truth beforehand, either by generating data from a statistical model, or by sampling data from a sufficiently large observed set. However, when generating data, two easily overlooked problems may arise.  
+To evaluate the ability of an imputation routine to handle the non-response model, a form of truth has to be established. Those who perform simulation studies are in the luxury position to establish the truth beforehand, either by generating data from a statistical model, or by sampling data from a sufficiently large observed set. However, when generating data, two easily overlooked problems may arise.  
 
 First, data are often generated following the model (or distribution) that is also used for imputing the data. The performance of the imputation approach is then deemed good, which is no surprise as the evaluated conditions are in favor of the problem that is studied. Although such procedures may be statistically relevant, the approach would be no good for even the simplest case. Such simulations pose serious threats to the applicability of the method as real-life data hardly ever follow a given theoretical distribution. 
 
@@ -46,13 +54,13 @@ In order to obtain valid imputation inference, the imputation model must capture
 
 With MCAR missingness mechanisms, the probability to be missing is the same for all cases. This is a necessary simulation condition for evaluating the performance of imputation procedures. If an imputation method is not able to solve the problem (i.e. yield valid inference) under MCAR, the statistical properties of the procedure are not sound. Sadly, the straightforward case of MCAR is often neglected from simulation studies and focus is drawn to the evaluation of MAR mechanisms only. Alternatively, some studies limit their evaluations to MCAR mechanisms only, which in my view may be far too simplistic. 
 
-```{r mis_mech, echo=FALSE, fig.cap="Three missingness mechanisms that yield approximately 50 percent missingness ($N=500$). Displayed are a MCAR mechanism, a right-tailed MAR mechanism generated from bivariate normal data with correlation $\rho=.8$ and the same MAR mechanism, now generated from bivariate normal data with correlation $\rho= 0$."}
+```{r mis_mech, echo=FALSE, fig.cap="\\label{fig:mis_mech}Three missingness mechanisms that yield approximately 50 percent missingness ($N=500$). Displayed are a MCAR mechanism, a right-tailed MAR mechanism generated from bivariate normal data with correlation $\rho=.8$ and the same MAR mechanism, now generated from bivariate normal data with correlation $\rho= 0$."}
 knitr::include_graphics("img/plot_mmech.pdf")
 ```
 
 With MAR missingness mechanisms, the probability to be missing is the same within groups of cases defined by the observed data only (e.g. males are less likely to disclose their weight, but gender is observed). The essence here is that the observed relations in the data are used to induce missingness during simulation (e.g. weight is made incomplete based on gender), but these relations may be weak, or non-existent. 
 
-When MAR is induced based on weaker relations in the data, claims for a method's applicability to situations where the missingness is random become less valid. When MAR is induced from data without multivariate relations, the inferential implication of the missingness would mimic those of MCAR. This problem is generally overlooked in simulation studies and the procedure to generate missing data is often insufficiently described in resulting publications. Figure \@ref(fig:mis_mech) demonstrates two realizations of missingness mechanisms under MAR mechanisms derived from data with different multivariate relations. 
+When MAR is induced based on weaker relations in the data, claims for a method's applicability to situations where the missingness is random become less valid. When MAR is induced from data without multivariate relations, the inferential implication of the missingness would mimic those of MCAR. This problem is generally overlooked in simulation studies and the procedure to generate missing data is often insufficiently described in resulting publications. Figure \ref{fig:mis_mech} demonstrates two realizations of missingness mechanisms under MAR mechanisms derived from data with different multivariate relations. 
 
 It is obvious that the MAR missingness generated from data with low correlation would yield similar inference to the MCAR missingness, even though the missingness is clearly random. The simulation results from Table 1 confirm this. A detailed simulation setup can be found in Appendix A. 
 
@@ -95,9 +103,9 @@ For situations where sampling variance is not of interest, the sampling process 
 
 First, one should always consider MCAR missingness, i.e. the scenario where the missing values are missing at random and the observed values are observed at random. Under MCAR, the statistical properties of the observed data given the missing data are known and any imputation routine that cannot at least mimic the performance of the observed data inference, should be deemed inefficient in the scope of the simulation.  
 
-Next, missing data should be induced conform a model that is dependent on the observed data. A straightforward technique for inducing different forms of univariate MAR missingness is described in @fimd, p. 63; see Figure \@(fig:MAR) and a generalization to multivariate MAR missingness can be found in @van2006fully, Appendix B, and @brand1999development, par. 5.2.3. If the missingness is to be induced in longitudinal data, auto-regressive MAR models e.g. cf. @shara2015randomly, model 2 and model 3, can be useful. 
+Next, missing data should be induced conform a model that is dependent on the observed data. A straightforward technique for inducing different forms of univariate MAR missingness is described in @fimd, p. 63; see Figure \ref{fig:MAR} and a generalization to multivariate MAR missingness can be found in @van2006fully, Appendix B, and @brand1999development, par. 5.2.3. If the missingness is to be induced in longitudinal data, auto-regressive MAR models e.g. cf. @shara2015randomly, model 2 and model 3, can be useful. 
 
-```{r MAR, echo=FALSE, fig.cap="Examples of four random missingness mechanisms that yield approximately 50 percent missingness. For negatively correlated missingness covariates the resulting mechanisms are reversed."}
+```{r MAR, echo=FALSE, fig.cap="\\label{fig:MAR}Examples of four random missingness mechanisms that yield approximately 50 percent missingness. For negatively correlated missingness covariates the resulting mechanisms are reversed."}
 knitr::include_graphics("img/plot_mar.pdf")
 ```
 
@@ -114,7 +122,9 @@ The dependency of the procedure on the assumption under which we obtain inferenc
 Although I limit the focus here to ignorable non-response, the above suggested proportions are equally applicable to simulations under non-ignorable non-response.
 
 Fifth, the used missingness mechanism should be detailed, either graphically or written as a function of the data. Often, when inducing missingness, authors remain vague about the actual missingness mechanism under investigation and, even worse, some authors only report something like
-\emph{We generated missing data following a MAR missingness mechanism.}
+
+> We generated missing data following a MAR missingness mechanism.
+
 This should be considered unacceptable as claims about the validity of the multiple imputation inference depends heavily on the simulated missingness mechanism. 
 
 ## Step 3. Evaluate performance
