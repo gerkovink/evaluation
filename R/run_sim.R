@@ -3,55 +3,88 @@
 # set-up 
 set.seed(123)
 library(dplyr)
-rmse <- function(obs, pred = 0){sqrt(mean((obs-pred)^2))}
+source("R/utils.R")
 
 # parameters
 n_sim <- c(100, 1000)
 n_obs <- 500 #c(100, 500, 1000)
 n_var <- 2 #c(2, 5, 20)
-rho <- c(0, .8)
+means <- c(10, 100)
+corr <- c(0, .8)
 mis_mech <- c("MCAR", "MAR", "MNAR")
-mis_type <- "right" #c("left", "right", "mid", "tail")
+mis_type <- "RIGHT" #c("left", "right", "mid", "tail")
 mis_prop <- c(.1, .25, .5)
 n_imp <- c(1, 5)
+imp_meth <- c("mean", "norm.predict", "norm") #cca
 n_it <- c(1, 5, 10)
-imp_meth <- c("mean", "norm.predict", "norm")
 est <- c("mean(Y)", "var(Y)", "cov(X,Y)", "lm(Y~X)", "lm(X~Y)")
-# other: cca, model vs design based; with or without sampling variance
+# model vs design based
+# with or without sampling variance
 
 # data generating mechanism
-mu <- c(5, 10, 10)
-sigma <- matrix(0, 3, 3)
-diag(sigma) <- 1
-sigma[1, 2] <- sigma[2, 1] <- 0.8 #make this rho
 
-# generate data
-dat <- data.frame(mvtnorm::rmvnorm(n_obs, mean = mu, sigma = sigma))
+varcov <- matrix(0, 2, 2)
+diag(varcov) <- 1
+varcov[1, 2] <- varcov[2, 1] <- corr 
 
-# ampute 
-amp.mcar.8 <- mice::ampute(dat[, c("X1", "X2")], prop = .5, mech = "MCAR")$amp
-amp.mcar.0 <- mice::ampute(dat[, c("X1", "X3")], prop = .5, mech = "MCAR")$amp
-amp.mar.8 <- mice::ampute(dat[, c("X1", "X2")], prop = .5, mech = "MAR")$amp
-amp.mar.0 <- mice::ampute(dat[, c("X1", "X3")], prop = .5, mech = "MAR")$amp
+# simulation function
+run <- function(
+  n_obs = 500,
+  corr = 0.4,
+  mis_mech = "MAR",
+  mis_type = "RIGHT",
+  mis_prop = 0.5,
+  n_imp = 5,
+  n_it = 10,
+  imp_meth = "norm",
+  ...){
+    
+    # generate data
+    dat <- data.frame(mvtnorm::rmvnorm(
+      n = n_obs,
+      mean = means,
+      sigma = matrix(c(1, corr, corr, 1), 2, 2)
+    )) %>% setNames(c("Y", "X"))
+    
+    # ampute
+    amp <- dat %>% 
+      mice::ampute(
+        prop = mis_prop,
+        mech = mis_mech,
+        type = mis_type
+        ) %>% 
+      .$amp
+    
+    # impute and fit analysis model
+    imp <- amp %>%
+      mice::mice(
+        m = n_imp,
+        method = imp_meth,
+        maxit = n_it,
+        print = FALSE
+      ) %>%
+      with(lm(Y ~ X))
 
-# impute and fit analysis model
-imp.mcar.8 <- amp.mcar.8 %>% 
-  mice::mice(method = "norm", print = FALSE) %>% 
-  with(lm(X1 ~ X2))
+    # pool results
+    res <- imp %>% 
+      mice::pool() %>% 
+      broom::tidy(conf.int = TRUE) %>% 
+      .[2, ] %>% 
+      mutate(bias = estimate - corr,
+             ciw = conf.high - conf.low,
+             cr = conf.low <= corr && corr <= conf.high,
+             .keep = "none") %>% 
+      cbind(rmse_pred = purrr::map_dbl(1:n_imp, 
+        ~{rmse(imp$analyses[[.x]]$residuals)}) %>% 
+          mean(),
+        rmse_cell = purrr::map_dbl(1:n_imp, 
+          ~{rmse(imp$analyses[[.x]]$model$Y[is.na(amp$Y)], dat$Y[is.na(amp$Y)])}) %>% 
+          mean()
+        )
+    
+    # output
+    return(res)
+  }
 
-# pool results
-res.mcar.8 <- imp.mcar.8 %>% 
-  mice::pool() %>% 
-  broom::tidy(conf.int = TRUE) %>% 
-  select("estimate", "conf.low", "conf.high") %>% 
-  .[2, ] %>% 
-  c(rmse_pred = purrr::map_dbl(
-    1:5, 
-    ~{rmse(imp.mcar.8$analyses[[.x]]$residuals)}
-    ) %>% mean(),
-    rmse_cell = purrr::map_dbl(
-      1:5, 
-      ~{rmse(imp.mcar.8$analyses[[.x]]$model$X1[is.na(amp.mcar.8$X1)], dat$X1[is.na(amp.mcar.8$X1)])}
-    ) %>% mean()
-    )
-
+# test
+run()

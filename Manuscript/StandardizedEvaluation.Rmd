@@ -56,7 +56,7 @@ In order to obtain valid imputation inference, the imputation model must capture
 
 With MCAR missingness mechanisms, the probability to be missing is the same for all cases. This is a necessary simulation condition for evaluating the performance of imputation procedures. If an imputation method is not able to solve the problem (i.e. yield valid inference) under MCAR, the statistical properties of the procedure are not sound. Sadly, the straightforward case of MCAR is often neglected from simulation studies and focus is drawn to the evaluation of MAR mechanisms only. Alternatively, some studies limit their evaluations to MCAR mechanisms only, which in my view may be far too simplistic. 
 
-```{r mis_mech, echo=FALSE, fig.cap="\\label{fig:mis_mech}Three missingness mechanisms that yield approximately 50 percent missingness ($N=500$). Displayed are a MCAR mechanism, a right-tailed MAR mechanism generated from bivariate normal data with correlation $\rho=.8$ and the same MAR mechanism, now generated from bivariate normal data with correlation $\rho= 0$."}
+```{r mis_mech, echo=FALSE, fig.cap="\\label{fig:mis_mech}Three missingness mechanisms that yield approximately 50 percent missingness ($N=500$). Displayed are a MCAR mechanism, a right-tailed MAR mechanism generated from bivariate normal data with correlation $\\rho=.8$ and the same MAR mechanism, now generated from bivariate normal data with correlation $\\rho= 0$."}
 knitr::include_graphics("img/plot_mmech.pdf")
 ```
 
@@ -125,7 +125,7 @@ Although I limit the focus here to ignorable non-response, the above suggested p
 
 Fifth, the used missingness mechanism should be detailed, either graphically or written as a function of the data. Often, when inducing missingness, authors remain vague about the actual missingness mechanism under investigation and, even worse, some authors only report something like
 
-> We generated missing data following a MAR missingness mechanism.
+> *We generated missing data following a MAR missingness mechanism.*
 
 This should be considered unacceptable as claims about the validity of the multiple imputation inference depends heavily on the simulated missingness mechanism. 
 
