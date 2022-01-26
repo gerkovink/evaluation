@@ -6,8 +6,8 @@ library(dplyr)
 source("R/utils.R")
 
 # parameters
-n_sim <- c(100, 1000)
-n_obs <- 500 #c(100, 500, 1000)
+n_sim <- 1000 #c(100, 1000)
+n_obs <- c(50, 500, 5000)
 n_var <- 2 #c(2, 5, 20)
 means <- c(10, 100)
 corr <- c(0, .8)
@@ -21,11 +21,11 @@ est <- c("mean(Y)", "var(Y)", "cov(X,Y)", "lm(Y~X)", "lm(X~Y)")
 # model vs design based
 # with or without sampling variance
 
-# data generating mechanism
-
-varcov <- matrix(0, 2, 2)
-diag(varcov) <- 1
-varcov[1, 2] <- varcov[2, 1] <- corr 
+# # data generating mechanism
+# means <- c(10, 100)
+# varcov <- matrix(0, 2, 2)
+# diag(varcov) <- 1
+# varcov[1, 2] <- varcov[2, 1] <- corr 
 
 # simulation function
 run <- function(
@@ -40,51 +40,74 @@ run <- function(
   ...){
     
     # generate data
-    dat <- data.frame(mvtnorm::rmvnorm(
-      n = n_obs,
+    dat <- purrr::map(n_obs,
+      ~{data.frame(mvtnorm::rmvnorm(
+      n = .x,
       mean = means,
       sigma = matrix(c(1, corr, corr, 1), 2, 2)
-    )) %>% setNames(c("Y", "X"))
+    )) %>% setNames(c("Y", "X"))}) %>% 
+      setNames(paste0("n_obs_", n_obs))
     
     # ampute
-    amp <- dat %>% 
-      mice::ampute(
+    amp <- purrr::map(
+      dat,
+      function(.d){
+        mice::ampute(.d,
         prop = mis_prop,
         mech = mis_mech,
         type = mis_type
         ) %>% 
-      .$amp
+      .$amp}) 
     
     # impute and fit analysis model
-    imp <- amp %>%
-      mice::mice(
+    imp <- purrr::map(
+      amp,
+      function(.a){
+        mice::mice(.a,
         m = n_imp,
         method = imp_meth,
         maxit = n_it,
         print = FALSE
       ) %>%
-      with(lm(Y ~ X))
+      with(lm(Y ~ X))})
 
     # pool results
-    res <- imp %>% 
-      mice::pool() %>% 
-      broom::tidy(conf.int = TRUE) %>% 
-      .[2, ] %>% 
+    res <- purrr::map(
+      imp,
+      function(.i){
+        mice::pool(.i) %>% 
+        broom::tidy(conf.int = TRUE) %>% 
+        .[2, ] %>% 
       mutate(bias = estimate - corr,
              ciw = conf.high - conf.low,
              cr = conf.low <= corr && corr <= conf.high,
              .keep = "none") %>% 
-      cbind(rmse_pred = purrr::map_dbl(1:n_imp, 
-        ~{rmse(imp$analyses[[.x]]$residuals)}) %>% 
-          mean(),
-        rmse_cell = purrr::map_dbl(1:n_imp, 
-          ~{rmse(imp$analyses[[.x]]$model$Y[is.na(amp$Y)], dat$Y[is.na(amp$Y)])}) %>% 
-          mean()
-        )
+      cbind(rmse_pred = purrr::map_dbl(
+        1:n_imp, 
+        function(.m){
+          rmse(.i$analyses[[.m]]$residuals)}) %>% 
+          mean())
+      })
+    # out <- 
+    #   ~{   %>% 
+    #   cbind(
+    #     rmse_pred = purrr::map_dbl(1:n_imp, 
+    #     ~{rmse(imp[[.]]$analyses[[.x]]$residuals)}) %>% 
+    #       mean(),
+    #     rmse_cell = purrr::map_dbl(1:n_imp, 
+    #       ~{rmse(imp$analyses[[.x]]$model$Y[is.na(amp$Y)], dat$Y[is.na(amp$Y)])}) %>% 
+    #       mean()
+    #     )})
     
     # output
     return(res)
   }
 
-# test
+# test once
 run()
+
+# test with multiple conditions
+a <- purrr::map_dfr(n_obs, ~{run(.x) %>% cbind(n_obs = .x, .)})
+
+# test simulation
+b <- replicate(n = 2, purrr::map_dfr(n_obs, ~{run(.x) %>% cbind(n_obs = .x, .)}), simplify = FALSE)
