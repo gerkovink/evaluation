@@ -1,9 +1,9 @@
 # small simulation study for illustration
 
 # set-up 
-set.seed(123)
-library(dplyr)
-source("R/utils.R")
+# set.seed(123)
+# library(dplyr)
+# source("R/utils.R")
 
 # # parameters
 # n_sim <- 1000 #c(100, 1000)
@@ -22,35 +22,35 @@ source("R/utils.R")
 
 
 # generate data
-generation <- function(n_obs, corr){
+generation <- function(n, r){
   dat <- data.frame(mvtnorm::rmvnorm(
-    n = n_obs,
+    n = n,
     mean = c(10, 10),
-    sigma = matrix(c(1, corr, corr, 1), 2, 2)
+    sigma = matrix(c(1, r, r, 1), 2, 2)
   )) %>% setNames(c("Y", "X"))
 }
 
 # ampute the data
-amputation <- function(dat, mis_mech, mis_type, mis_prop){
+amputation <- function(dat, mech, type, prop){
   amp <- dat %>% 
   mice::ampute(
-    prop = mis_prop,
-    mech = mis_mech,
-    type = mis_type
+    prop = prop,
+    mech = mech,
+    type = type
   )}
 
 # impute the data
-imputation <- function(amp, imp_meth, n_imp, n_it){
+imputation <- function(amp, meth, m, it){
   imp <- amp$amp %>%
   mice::mice(
-    m = n_imp,
-    method = imp_meth,
-    maxit = n_it,
+    m = m,
+    method = meth,
+    maxit = it,
     print = FALSE
   )}
 
 # evaluate the imputations
-evaluation <- function(imp, amp, dat, corr){
+evaluation <- function(imp, amp, dat, r){
   # analysis model
   fit <- imp %>% 
     with(lm(Y ~ X))
@@ -78,11 +78,11 @@ evaluation <- function(imp, amp, dat, corr){
     mutate(
       beta_est = estimate,
       beta_ciw = conf.high - conf.low,
-      beta_cr = conf.low <= corr && corr <= conf.high,
+      beta_cr = conf.low <= r && r <= conf.high,
       .keep = "none") %>% 
     cbind(
       n_obs = nrow(dat), 
-      corr = corr, 
+      corr = r, 
       mis_mech = amp$mech,
       mis_type = amp$type,
       mis_prop = amp$prop,
@@ -98,41 +98,42 @@ evaluation <- function(imp, amp, dat, corr){
 
 # simulation function
 run <- function(
-  n = 500,
-  r = 0.4,
-  mech = "MAR",
-  type = "RIGHT",
-  prop = 0.5,
-  meth = "norm",
-  m = 5,
-  it = 10){
+  n_obs = 500,
+  corr = 0.4,
+  mis_mech = "MAR",
+  mis_type = "RIGHT",
+  mis_prop = 0.5,
+  imp_meth = "norm",
+  n_imp = 5,
+  n_it = 10){
     
   # generate data
-  dat <- generation(n_obs = n, corr = r)
+  dat <- generation(n = n_obs, r = corr)
   
   # ampute the data
-  amp <- amputation(dat, mis_mech = mech, mis_type = type, mis_prop = prop)
+  amp <- amputation(dat, mech = mis_mech, type = mis_type, prop = mis_prop)
     
   # impute the data
-  imp <- imputation(amp, imp_meth = meth, n_imp = m, n_it = it)
+  imp <- imputation(amp, meth = imp_meth, m = n_imp, it = n_it)
   
   # evaluate the imputations 
-  out <- evaluation(imp, amp, dat, corr = r)
+  out <- evaluation(imp, amp, dat, r = corr)
   
   # output
   return(out)
 }
 
-# test once
-run()
-run(r = 0.8)
-
-# test with multiple conditions
-purrr::map_dfr(c(50, 500), ~{run(n = .x)}) 
-purrr::map_dfr(c(0, .4, .8), ~{run(r = .x)}) 
-
-# test with more simulation repetitions
-sims <- purrr::map_dfr(1:5, ~{
-  purrr::map_dfr(c(0, .4, .8), function(.c){run(r = .c) %>% cbind(sim = .x, .)})})
-sims %>% group_by(corr) %>% summarise(mean(rmse_pred))
+# # test once
+# run()
+# run(corr = 0.8)
+# 
+# # test with multiple conditions
+# purrr::map_dfr(c(50, 500), ~{run(n_obs = .x)}) 
+# purrr::map_dfr(c(0, .4, .8), ~{run(corr = .x)}) 
+# purrr::map_dfr(c("MCAR", "MAR", "MNAR"), ~{run(mis_mech = .x)}) 
+# 
+# # test with more simulation repetitions
+# sims <- purrr::map_dfr(1:5, ~{
+#   purrr::map_dfr(c(0, .4, .8), function(.c){run(corr = .c) %>% cbind(sim = .x, .)})})
+# sims %>% group_by(corr) %>% summarise(mean(rmse_pred))
 
