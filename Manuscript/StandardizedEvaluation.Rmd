@@ -54,27 +54,37 @@ First, data are often generated following the model (or distribution) that is al
 
 Second, data are often generated such that the problem that is being studied is most pronounced. This results in simulated data that contains very valuable information structures, i.e. the correlations between groups of variables may be very pronounced. In other words, no matter what type of missingness is induced, the observed parts of the data may still hold much, if not all, of the information about the missing part and the performance of the imputation procedure is not surprisingly evaluated as very good. Also, it may be that the relations in real-life data are rarely as pronounced as the problem that is being studied.
 
-```{r sim_nobs, echo=FALSE, cache=TRUE, paged.print=TRUE}
+```{r sim_nobs, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE, paged.print=TRUE}
 # setup
 set.seed(1)
-n_sim <- 2
+n_sim <- 100
 
 sim_nobs <- purrr::map_dfr(1:n_sim, function(.i){
   purrr::map_dfr(c(50, 500, 5000), ~{
     run(n_obs = .x) %>% cbind(sim = .i, .)})}) 
 
-gtsummary::tbl_summary(sim_nobs, by = method)
-sim_mech %>% 
-  group_by(mis_mech, corr) %>% 
+# gtsummary::tbl_summary(sim_nobs, by = dat)
+# https://haozhu233.github.io/kableExtra/awesome_table_in_html.html#Group_rows_via_labeling
+sim_nobs %>% 
+  group_by(n_obs, dat) %>% 
   summarise(
-    mean_cca = mean(mean_cca - 10),
-    mean_est = mean(mean_est - 10),
-    beta_cca = mean(beta_cca - corr),
-    beta_est = mean(beta_est - corr),
-    beta_ciw = mean(beta_ciw),
-    beta_cr = mean(beta_cr),
-    rmse_pred = mean(rmse_pred),
-    rmse_cell = mean(rmse_cell))
+    mean_Y = mean(ave),
+    beta_X = mean(est),
+    CIW = mean(ciw),
+    CR = mean(cov),
+    RMSE_pred = mean(rmse_pred),
+    RMSE_cell = mean(rmse_cell, na.rm = TRUE))  %>% 
+  .[, -1] %>% 
+  knitr::kable(
+    col.names = c("", "$\\mu_{Y} = 10$", "$\\beta_{X} = 0.4$", "CIW", "CR", "RMSE$_{p}$", "RMSE$_{c}$"), 
+    digits = 3,
+    escape = FALSE) %>% 
+  kableExtra::kable_classic(full_width = TRUE) %>% 
+  kableExtra::pack_rows(group_label = "$n = 50$", 1, 3) %>% 
+  kableExtra::pack_rows(group_label = "$n = 500$", 4, 6) %>% 
+  kableExtra::pack_rows(group_label = "$n = 5000$", 7, 9)
+
+
 ```
 
 ## Missingness generation problems
@@ -98,27 +108,27 @@ As expected, under genuine MAR missingness, i.e. the missingness probabilities d
 Although one cannot definitively verify if the missingness is random - after all, for every MNAR mechanism there is a MAR mechanism with equal fit @molenberghs2008every - it can be argued that MNAR is the more likely mechanism for real life missingness scenarios. In such cases, an indication of the validity of the obtained inference, given that the assumed missingness mechanism is suspected to be invalid, may be obtained by performing sensitivity analysis see e.g. @molenberghs2014handbook, part 5.
 
 ```{r sim_mech_corr, echo=FALSE, cache=TRUE, paged.print=TRUE}
-# setup
-set.seed(1)
-n_sim <- 10
-correlations <- c(0, .4, .8)
-mechanisms <- c("MCAR", "MAR", "MNAR") 
-
-sim_mech <- purrr::map_dfr(1:n_sim, function(.i){
-   purrr::map_dfr(correlations, function(.c){
-     purrr::map_dfr(mechanisms, function(.m){
-       run(corr = .c, mis_mech = .m) %>% cbind(sim = .i, .)})})})
-sim_mech %>% 
-  group_by(mis_mech, corr) %>% 
-  summarise(
-    mean_cca = mean(mean_cca - 10),
-    mean_est = mean(mean_est - 10),
-    beta_cca = mean(beta_cca - corr),
-    beta_est = mean(beta_est - corr),
-    beta_ciw = mean(beta_ciw),
-    beta_cr = mean(beta_cr),
-    rmse_pred = mean(rmse_pred),
-    rmse_cell = mean(rmse_cell))
+# # setup
+# set.seed(1)
+# n_sim <- 10
+# correlations <- c(0, .4, .8)
+# mechanisms <- c("MCAR", "MAR", "MNAR") 
+# 
+# sim_mech <- purrr::map_dfr(1:n_sim, function(.i){
+#    purrr::map_dfr(correlations, function(.c){
+#      purrr::map_dfr(mechanisms, function(.m){
+#        run(corr = .c, mis_mech = .m) %>% cbind(sim = .i, .)})})})
+# sim_mech %>% 
+#   group_by(mis_mech, corr) %>% 
+#   summarise(
+#     mean_cca = mean(mean_cca - 10),
+#     mean_est = mean(mean_est - 10),
+#     beta_cca = mean(beta_cca - corr),
+#     beta_est = mean(beta_est - corr),
+#     beta_ciw = mean(beta_ciw),
+#     beta_cr = mean(beta_cr),
+#     rmse_pred = mean(rmse_pred),
+#     rmse_cell = mean(rmse_cell))
 ```
 
 <!-- table -->

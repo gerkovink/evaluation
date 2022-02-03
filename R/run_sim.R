@@ -61,10 +61,10 @@ evaluation <- function(imp, amp, dat, r){
            broom::tidy(.x, conf.int = TRUE) %>% 
              .[2, c("estimate", "conf.low", "conf.high")]}) %>% 
     mutate(
-      dat = c("full", "cca", "imp"),
+      dat = factor(c("True", "CCA", "Imp."), ordered = TRUE),
       est = estimate,
       ciw = conf.high - conf.low,
-      cov = conf.low <= r && r <= conf.high,
+      cov = conf.low <= r & r <= conf.high,
       .keep = "none")
   
   # refs <- data.frame(
@@ -80,7 +80,7 @@ evaluation <- function(imp, amp, dat, r){
     rmse_cell = c(0, NA)) %>% 
     rbind(., purrr::map_dfr(1:imp$m, function(.m) {
     data.frame(
-      rmse_pred = rmse(fit$analyses[[.m]]$residuals),
+      rmse_pred = rmse(fit_imps$analyses[[.m]]$residuals),
       rmse_cell = rmse(imp$imp$Y[[.m]] - dat$Y[imp$where[, "Y"]])
     )}) %>% colMeans() %>% t())
   
