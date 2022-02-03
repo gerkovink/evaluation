@@ -51,35 +51,50 @@ imputation <- function(amp, meth, m, it){
 
 # evaluate the imputations
 evaluation <- function(imp, amp, dat, r){
-  # analysis model
-  fit <- imp %>% 
-    with(lm(Y ~ X))
+  # fit analysis model
+  fit_imps <- with(imp, lm(Y ~ X))
+  fits <- list(full = lm(Y~X, dat),
+               cca = lm(Y~X, amp$amp, na.action = na.omit),
+               imp = mice::pool(fit_imps))
+  # performance
+  out <- purrr::map_dfr(fits, ~{
+           broom::tidy(.x, conf.int = TRUE) %>% 
+             .[2, c("estimate", "conf.low", "conf.high")]}) %>% 
+    mutate(
+      dat = c("full", "cca", "imp"),
+      est = estimate,
+      ciw = conf.high - conf.low,
+      cov = conf.low <= r && r <= conf.high,
+      .keep = "none")
   
-  # reference performance
-  refs <- data.frame(
-    mean_obs = mean(dat$Y),
-    mean_cca = mean(amp$amp$Y, na.rm = TRUE),
-    mean_est = mean(mice::complete(imp, "long")$Y),
-    beta_obs = coef(lm(Y~X, dat))[2],
-    beta_cca = coef(lm(Y~X, amp$amp, na.action = na.omit))[2])
+  # refs <- data.frame(
+  #   mean_full = mean(dat$Y),
+  #   mean_cca = mean(amp$amp$Y, na.rm = TRUE),
+  #   mean_est = mean(mice::complete(imp, "long")$Y),
+  #   beta_full = coef(lm(Y~X, dat))[2],
+  #   beta_cca = coef(lm(Y~X, amp$amp, na.action = na.omit))[2])
   
   # root mean squared errors
-  rmses <- purrr::map_dfr(1:imp$m, function(.m){
+  rmses <- data.frame(
+    rmse_pred = c(rmse(fits$full$residuals), rmse(fits$cca$residuals)),
+    rmse_cell = c(0, NA)) %>% 
+    rbind(., purrr::map_dfr(1:imp$m, function(.m) {
     data.frame(
-      rmse_pred = rmse(fit$analyses[[.m]]$residuals),    
-    rmse_cell = rmse(imp$imp$Y[[.m]] - dat$Y[imp$where[, "Y"]])) 
-  }) %>% colMeans() %>% t()
+      rmse_pred = rmse(fit$analyses[[.m]]$residuals),
+      rmse_cell = rmse(imp$imp$Y[[.m]] - dat$Y[imp$where[, "Y"]])
+    )}) %>% colMeans() %>% t())
   
   # performance
-  out <- fit %>% 
-    mice::pool() %>% 
-    broom::tidy(conf.int = TRUE) %>% 
-    .[2, ] %>% 
-    mutate(
-      beta_est = estimate,
-      beta_ciw = conf.high - conf.low,
-      beta_cr = conf.low <= r && r <= conf.high,
-      .keep = "none") %>% 
+  out <- out %>% 
+  # <- fit %>% 
+  #   mice::pool() %>% 
+  #   broom::tidy(conf.int = TRUE) %>% 
+  #   .[2, ] %>% 
+  #   mutate(
+  #     beta_est = estimate,
+  #     beta_ciw = conf.high - conf.low,
+  #     beta_cr = conf.low <= r && r <= conf.high,
+  #     .keep = "none") %>% 
     cbind(
       n_obs = nrow(dat), 
       corr = r, 
@@ -89,10 +104,10 @@ evaluation <- function(imp, amp, dat, r){
       imp_meth = imp$method[1],
       n_imp = imp$m,
       n_it = imp$iteration,
-      refs,
-      ., 
-      rmses)
-  rownames(out) <- NULL
+      .,
+      ave = c(mean(dat$Y), mean(amp$amp$Y, na.rm = TRUE), mean(mice::complete(imp, "long")$Y)),
+      rmses,
+      row.names = NULL)
   return(out)
 }
 

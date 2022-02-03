@@ -54,10 +54,32 @@ First, data are often generated following the model (or distribution) that is al
 
 Second, data are often generated such that the problem that is being studied is most pronounced. This results in simulated data that contains very valuable information structures, i.e. the correlations between groups of variables may be very pronounced. In other words, no matter what type of missingness is induced, the observed parts of the data may still hold much, if not all, of the information about the missing part and the performance of the imputation procedure is not surprisingly evaluated as very good. Also, it may be that the relations in real-life data are rarely as pronounced as the problem that is being studied.
 
+```{r sim_nobs, echo=FALSE, cache=TRUE, paged.print=TRUE}
+# setup
+set.seed(1)
+n_sim <- 2
+
+sim_nobs <- purrr::map_dfr(1:n_sim, function(.i){
+  purrr::map_dfr(c(50, 500, 5000), ~{
+    run(n_obs = .x) %>% cbind(sim = .i, .)})}) 
+
+gtsummary::tbl_summary(sim_nobs, by = method)
+sim_mech %>% 
+  group_by(mis_mech, corr) %>% 
+  summarise(
+    mean_cca = mean(mean_cca - 10),
+    mean_est = mean(mean_est - 10),
+    beta_cca = mean(beta_cca - corr),
+    beta_est = mean(beta_est - corr),
+    beta_ciw = mean(beta_ciw),
+    beta_cr = mean(beta_cr),
+    rmse_pred = mean(rmse_pred),
+    rmse_cell = mean(rmse_cell))
+```
 
 ## Missingness generation problems
 
-In order to obtain valid imputation inference, the imputation model must capture the essence of the true non-response mechanism @meng1994multiple. The model - if any - that is used to generate the missingness is usually assumed to be random (MAR) or completely random (MCAR). Missingness mechanisms that are not random (MNAR) and mechanisms that are considered non-ignorable see e.g. @rubin1976inference, are generally ignored during evaluation of imputation methodologies, except for those methods that are specifically targeted at non-ignorable applications.
+In order to obtain valid imputation inference, the imputation model must capture the essence of the true non-response mechanism @meng94. The model - if any - that is used to generate the missingness is usually assumed to be random (MAR) or completely random (MCAR). Missingness mechanisms that are not random (MNAR) and mechanisms that are considered non-ignorable see e.g. @rubi76, are generally ignored during evaluation of imputation methodologies, except for those methods that are specifically targeted at non-ignorable applications.
 
 With MCAR missingness mechanisms, the probability to be missing is the same for all cases. This is a necessary simulation condition for evaluating the performance of imputation procedures. If an imputation method is not able to solve the problem (i.e. yield valid inference) under MCAR, the statistical properties of the procedure are not sound. Sadly, the straightforward case of MCAR is often neglected from simulation studies and focus is drawn to the evaluation of MAR mechanisms only. Alternatively, some studies limit their evaluations to MCAR mechanisms only, which in my view may be far too simplistic. 
 
@@ -75,7 +97,7 @@ As expected, under genuine MAR missingness, i.e. the missingness probabilities d
 
 Although one cannot definitively verify if the missingness is random - after all, for every MNAR mechanism there is a MAR mechanism with equal fit @molenberghs2008every - it can be argued that MNAR is the more likely mechanism for real life missingness scenarios. In such cases, an indication of the validity of the obtained inference, given that the assumed missingness mechanism is suspected to be invalid, may be obtained by performing sensitivity analysis see e.g. @molenberghs2014handbook, part 5.
 
-```{r sim_mech, echo=FALSE, cache=TRUE, paged.print=TRUE}
+```{r sim_mech_corr, echo=FALSE, cache=TRUE, paged.print=TRUE}
 # setup
 set.seed(1)
 n_sim <- 10
@@ -109,11 +131,11 @@ The amount of missingness that is used to simulate the performance of imputation
 
 The evaluation criteria used to assess imputation performance vary from one developer to another. This is not surprising as people from different fields could have a different focus on the problem at hand. However, because multiple imputation was designed as a mode for statistical inference, a minimal set of statistical properties should at least be evaluated. I highlight four aspects of evaluation that should be considered when evaluation imputation routines. 
 
-First, developers often only inquire about the 'accuracy' (i.e. how well can the method reproduce the original data). The goal of multiple imputation is not to reproduce the data, but to allow for obtaining valid inference given that the data are incomplete. We are interested in the correct answer to the research question; not in the truth itself. This means that, given the framework provided by @rubin1987, statistical properties such as bias, confidence intervals and the coverage rate of the confidence intervals should be studied. After all, the 95% confidence interval should contain the `true' value at least 95 out of 100 times @neyman1934two, p. 591.
+First, developers often only inquire about the 'accuracy' (i.e. how well can the method reproduce the original data). The goal of multiple imputation is not to reproduce the data, but to allow for obtaining valid inference given that the data are incomplete. We are interested in the correct answer to the research question; not in the truth itself. This means that, given the framework provided by @rubi87, statistical properties such as bias, confidence intervals and the coverage rate of the confidence intervals should be studied. After all, the 95% confidence interval should contain the `true' value at least 95 out of 100 times @neym34, p. 591.
 
 Second, the performance of imputation procedures on distributional properties is often ignored in simulation studies, and even though the estimates on the analysis level may be justified, some methods can yield imputations that may seem completely invalid to applied researchers. For example, one could very accurately estimate average human height by filling in negative values and values that are unrealistically large. While the obtained inference could still be valid under such imputations, the plausibility of the imputed values given the observed data should be under scrutiny. Rather, one would prefer an imputation technique to yield both valid inference and plausible imputations. It should be studied if an imputation method is prone to deliver such impractical results, and if so, under what conditions.
 
-Third, sampling variation has always been an essential part of the evaluation of multiple imputation methodology. However, in order to obtain information about a method's ability to handle the missing data problem, or to objectively compare methods on their ability to correct for missingness, it is not necessary to take sampling variation into account @vink2014pooling. After all, we are interested only in the missing data mechanism, and are not considering the noise induced by the sampling mechanism for evaluation in such studies.
+Third, sampling variation has always been an essential part of the evaluation of multiple imputation methodology. However, in order to obtain information about a method's ability to handle the missing data problem, or to objectively compare methods on their ability to correct for missingness, it is not necessary to take sampling variation into account @vink14. After all, we are interested only in the missing data mechanism, and are not considering the noise induced by the sampling mechanism for evaluation in such studies.
 
 Last, when the evaluator is on the verge of drawing conclusions about the performance of the imputation routine, the performance should be carefully qualified. Comparing the performance of an imputation routine given a population (or true) parameter allows for quantitative evaluation. However, in order to pose qualitative statements about the performance on simulated conditions, comparative methodology is required. For example, when claiming that imputation performance is unacceptable when deviations from normality become rather stringent, such performance is highly dependent on the simulation conditions that are used. For a well-balanced judgement about the severity of the performance drop, comparative simulations with e.g. nonparametric models should be executed. A method may perform badly, but if it still outperforms every other approach, it may yet be of great practical relevance.
 
@@ -134,7 +156,7 @@ For situations where sampling variance is not of interest, the sampling process 
 
 First, one should always consider MCAR missingness, i.e. the scenario where the missing values are missing at random and the observed values are observed at random. Under MCAR, the statistical properties of the observed data given the missing data are known and any imputation routine that cannot at least mimic the performance of the observed data inference, should be deemed inefficient in the scope of the simulation.  
 
-Next, missing data should be induced conform a model that is dependent on the observed data. A straightforward technique for inducing different forms of univariate MAR missingness is described in @fimd, p. 63; see Figure \ref{fig:MAR} and a generalization to multivariate MAR missingness can be found in @van2006fully, Appendix B, and @brand1999development, par. 5.2.3. If the missingness is to be induced in longitudinal data, auto-regressive MAR models e.g. cf. @shara2015randomly, model 2 and model 3, can be useful. 
+Next, missing data should be induced conform a model that is dependent on the observed data. A straightforward technique for inducing different forms of univariate MAR missingness is described in @fimd, p. 63; see Figure \ref{fig:MAR} and a generalization to multivariate MAR missingness can be found in @buur06, Appendix B, and @brand1999development, par. 5.2.3. If the missingness is to be induced in longitudinal data, auto-regressive MAR models e.g. cf. @shara2015randomly, model 2 and model 3, can be useful. 
 
 ```{r MAR, echo=FALSE, fig.cap="\\label{fig:MAR}Examples of four random missingness mechanisms that yield approximately 50 percent missingness. For negatively correlated missingness covariates the resulting mechanisms are reversed."}
 knitr::include_graphics("img/plot_mar.pdf")
