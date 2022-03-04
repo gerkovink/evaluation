@@ -10,10 +10,10 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
 library(dplyr)
-source(here::here("R/utils.R"))
-source(here::here("R/run_sim.R"))
+# source(here::here("R/utils.R"))
+# source(here::here("R/run_sim.R"))
 ```
 
 # TO DO
@@ -25,6 +25,42 @@ source(here::here("R/run_sim.R"))
 - add insights from literature review for chapter on missing data in EHR
 - add link to simulation script, and $n$
 - add simulation results
+
+# Structure
+
+1. introduction
+
+- aim
+- number of simulations
+
+2. data generation
+
+- model vs design based
+- data types
+- sample vs population (vs bootstrapping??)
+- number of observations
+- number of variables
+- coherence between variables
+
+3. missingness generation
+
+- monotone/univariate vs multivariate
+- missingness mechanism
+- type of M(N)AR
+- missingness proportion (vs proportion of incomplete cases! 50% incomplete == 25% missing in bivariate data)
+
+4. missing data methods
+
+- imputation method
+- number of imputations
+- number of iterations
+
+5. performance evaluation
+
+- estimand
+- diagnostic
+- ppc
+
 
 # Introduction
 
