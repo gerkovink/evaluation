@@ -30,7 +30,7 @@ The conditions are as follows.
 
 Data generation conditions:
 
-- number of observations ($n = \{50, 500, 5000\}$) *only max required*
+- number of observations ($n = \{50, 500, 5000\}$) *[for efficiency: only max required?]*
 - number of variables ($p = \{2\}$)
 - coherence between variables ($r = \{0, 0.4, 0.8\}$)
 
@@ -43,8 +43,8 @@ Amputation conditions:
 Imputation conditions:
 
 - imputation method (`meth` = {none, mean imputation, regression imputation, stochastic regression})
-- number of imputations (`m` = {1, 5}) *only max required*
-- number of iterations (`maxit` = 1, 5, 10) *use mice.mids to shorten runtime?*
+- number of imputations (`m` = {1, 5}) *[for efficiency: only max required?]*
+- number of iterations (`maxit` = 1, 5, 10) *[for efficiency: use mice.mids to shorten runtime?]*
 
 Performance evaluation:
 - estimand (average, regression coefficient)

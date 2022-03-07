@@ -12,7 +12,7 @@
 <meta name="author" content="Hanne Oberman" />
 
 
-<title>Simulation</title>
+<title>Simulation study</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -358,7 +358,7 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Simulation</h1>
+<h1 class="title toc-ignore">Simulation study</h1>
 <h4 class="author">Hanne Oberman</h4>
 <h4 class="date">4-3-2022</h4>
 
@@ -366,6 +366,8 @@ pre code {
 
 
 <p>This document contains the code and results for a simulation study accompanying the Standardized Evaluation manuscript.</p>
+<div id="overview" class="section level1">
+<h1>Overview</h1>
 <p>The simulation contains a whopping set of 7776 methods/conditions. That’s because we use different parameters for each level of the simulation, see pseudo-code:</p>
 <pre><code>for (data geneneration conditions) {
   generate complete data
@@ -378,7 +380,7 @@ pre code {
 <p>The conditions are as follows.</p>
 <p>Data generation conditions:</p>
 <ul>
-<li>number of observations (<span class="math inline">\(n = \{50, 500, 5000\}\)</span>)</li>
+<li>number of observations (<span class="math inline">\(n = \{50, 500, 5000\}\)</span>) <em>[for efficiency: only max required?]</em></li>
 <li>number of variables (<span class="math inline">\(p = \{2\}\)</span>)</li>
 <li>coherence between variables (<span class="math inline">\(r = \{0, 0.4, 0.8\}\)</span>)</li>
 </ul>
@@ -391,9 +393,58 @@ pre code {
 <p>Imputation conditions:</p>
 <ul>
 <li>imputation method (<code>meth</code> = {none, mean imputation, regression imputation, stochastic regression})</li>
-<li>number of imputations (<code>m</code> = {1, 5})</li>
-<li>number of iterations (<code>maxit</code> = 1, 5, 10)</li>
+<li>number of imputations (<code>m</code> = {1, 5}) <em>[for efficiency: only max required?]</em></li>
+<li>number of iterations (<code>maxit</code> = 1, 5, 10) <em>[for efficiency: use mice.mids to shorten runtime?]</em></li>
 </ul>
+<p>Performance evaluation: - estimand (average, regression coefficient) - diagnostic (bias, coverage rate, confidence interval width, cell rmse, analysis model rmse)</p>
+</div>
+<div id="simulation-functions" class="section level1">
+<h1>Simulation functions</h1>
+<p>For data generation we use the following:</p>
+<pre class="r"><code>generation &lt;- function(r, n = c(50, 500, 5000), p = 2) {
+  # generate data based on variance-covariance matrix
+  vcov &lt;- matrix(r, p, p)
+  diag(vcov) &lt;- 1
+  dat &lt;- data.frame(mvtnorm::rmvnorm(
+    n = max(n),
+    mean = rep(0, p),
+    sigma = vcov
+  )) %&gt;% setNames(paste0(&quot;X&quot;, 1:p))
+  # split output by number of observations
+  out &lt;- purrr::map(n, ~{
+    list(n_obs = .x,
+         p = p,
+         r = r,
+         dat = dat[1:.x,])
+  })
+  return(out)
+}</code></pre>
+<p>For amputation of the complete data:</p>
+<pre class="r"><code>amputation &lt;- function(dat, mech, type, prop) {
+  # induce missingness
+  amp &lt;- dat %&gt;%
+    mice::ampute(prop = prop,
+                 mech = mech,
+                 type = type)
+  # output
+  out &lt;- amp
+  return(out)
+}</code></pre>
+<p>To impute the incomplete data:</p>
+<pre class="r"><code>imputation &lt;- function(amp, meth, m = 5, it = 10) {
+  imp &lt;- amp$amp %&gt;%
+    mice::mice(
+      m = m,
+      method = meth,
+      maxit = it,
+      print = FALSE
+    )
+  # output
+  out &lt;- imp
+  return(out)
+}</code></pre>
+<p>And finally, for performance evaluation:</p>
+</div>
 
 
 
