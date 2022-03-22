@@ -50,27 +50,40 @@ Performance evaluation:
 - estimand (average, regression coefficient)
 - diagnostic (bias, coverage rate, confidence interval width, cell rmse, analysis model rmse)
 
-# Simulation functions
+# Simulation set-up
+
+Set-up environment:
+
+```{r env}
+# random seed
+set.seed(2022)
+# packages
+library(dplyr)
+# utils functions
+rmse <- function(obs, pred = 0){sqrt(mean((obs-pred)^2))}
+```
+
+## Simulation functions
 
 For data generation we use the following:
 
 ```{r dat}
-generation <- function(r, n = c(50, 500, 5000), p = 2) {
+generation <- function(r = 0.4, n = 500, p = 2) {
   # generate data based on variance-covariance matrix
   vcov <- matrix(r, p, p)
   diag(vcov) <- 1
-  dat <- data.frame(mvtnorm::rmvnorm(
-    n = max(n),
+  dat <- data.frame(
+    mvtnorm::rmvnorm(
+    n,
     mean = rep(0, p),
     sigma = vcov
   )) %>% setNames(paste0("X", 1:p))
-  # split output by number of observations
-  out <- purrr::map(n, ~{
-    list(n_obs = .x,
-         p = p,
-         r = r,
-         dat = dat[1:.x,])
-  })
+  # output
+  out <- list(
+    n_obs = n,
+    n_var = p,
+    corr = r,
+    dat = dat)
   return(out)
 }
 ```
@@ -78,14 +91,21 @@ generation <- function(r, n = c(50, 500, 5000), p = 2) {
 For amputation of the complete data:
 
 ```{r amp}
-amputation <- function(dat, mech, type, prop) {
+amputation <- function(datlist, mech = "MAR", type = "MID", prop = 0.25) {
   # induce missingness
-  amp <- dat %>%
-    mice::ampute(prop = prop,
+  amp <- mice::ampute(datlist$dat, 
+                 prop = prop,
                  mech = mech,
                  type = type)
   # output
-  out <- amp
+  out <- list(
+    n_obs = datlist$n_obs,
+    n_var = datlist$n_var,
+    corr = datlist$corr,
+    mis_mech = mech,
+    mis_type = type,
+    mis_prop = prop,
+    amp = amp)
   return(out)
 }
 ```
@@ -93,16 +113,50 @@ amputation <- function(dat, mech, type, prop) {
 To impute the incomplete data:
 
 ```{r imp}
-imputation <- function(amp, meth, m = 5, it = 10) {
-  imp <- amp$amp %>%
-    mice::mice(
-      m = m,
-      method = meth,
-      maxit = it,
-      print = FALSE
-    )
+imputation <- function(amplist, meth = "norm", m = 5, it = 5) {
+  # for CCA
+  if(meth == "none") {
+    imp <- na.omit(amplist$amp$amp)
+    average <- mean(imp$X1)
+    rmse_cell <- NA
+  } 
+  # for actual imputation methods
+  if (meth != "none") {
+    if (meth == "mean" | meth == "norm.predict") {
+      imp <- mice::mice(
+        amplist$amp$amp,
+        m = 1,
+        method = meth,
+        maxit = 1,
+        print = FALSE
+      )
+    } else {
+    imp <- mice::mice(
+        amplist$amp$amp,
+        m = m,
+        method = meth,
+        maxit = it,
+        print = FALSE
+      )
+    }
+    average <- mice::complete(imp, "long") %>% .$X1 %>% mean()
+    rmse_cell <- apply(imp$imp$X1 - amplist$amp$data$X1[imp$where[, "X1"]], 2, rmse) %>% mean()
+  }
   # output
-  out <- imp
+  out <- list(
+    n_obs = amplist$n_obs,
+    n_var = amplist$n_var,
+    corr = amplist$corr,
+    mis_mech = amplist$mis_mech,
+    mis_type = amplist$mis_type,
+    mis_prop = amplist$mis_prop,    
+    imp_meth = meth,
+    n_imp = m,
+    n_it = it,
+    average = average,
+    rmse_cell = rmse_cell,
+    imp = imp
+  )
   return(out)
 }
 ```
@@ -110,6 +164,80 @@ imputation <- function(amp, meth, m = 5, it = 10) {
 And finally, for performance evaluation:
 
 ```{r perf}
+evaluation <- function(implist){
+  # for CCA
+  if (is.data.frame(implist$imp)) {
+    fit <- lm(X1 ~ ., implist$imp)
+    rmse_pred <- rmse(fit$residuals)
+  }
+  # for actual imputation methods
+  if (mice::is.mids(implist$imp)) {
+    mira <- mice::complete(implist$imp, "all") %>% 
+      purrr::map(~lm(X1 ~ ., .))
+    fit <- suppressWarnings(mice::pool(mira))
+    rmse_pred <- purrr::map_dbl(mira, ~rmse(.$residuals)) %>% mean()
+  }
+  # get estimated regression coefficients
+  est <- fit %>% broom::tidy(conf.int = TRUE) %>%
+    .[2, c("estimate", "conf.low", "conf.high")] 
+  # output
+  out <- data.frame(
+    n_obs = implist$n_obs,
+    n_var = implist$n_var,
+    corr = implist$corr,
+    mis_mech = implist$mis_mech,
+    mis_type = implist$mis_type,
+    mis_prop = implist$mis_prop,    
+    imp_meth = implist$imp_meth,
+    n_imp = implist$n_imp,
+    n_it = implist$n_it,
+    average = implist$average, 
+    coeff = est$estimate, 
+    ci_ll = est$conf.low,
+    ci_ul = est$conf.high,
+    rmse_pred = rmse_pred, 
+    rmse_cell = implist$rmse_cell
+  )
+  return(out)
+}
+```
 
+The combined function will consist of these steps:
+
+```{r test_default}
+dat <- generation()
+amp <- amputation(dat)
+imp <- imputation(amp)
+est <- evaluation(imp)
+```
+
+## Simulation conditions
+
+The full simulation function will be applied to these conditions:
+
+```{r cond}
+# data generation parameters
+n_obs = c(50, 500, 5000) 
+corr = c(0, .4, .8)
+dat_par <- expand.grid(n_obs = n_obs, corr = corr)
+# amputation parameters
+mis_mech = c("MCAR", "MAR", "MNAR")
+mis_type = c("LEFT", "RIGHT", "MID", "TAIL")
+mis_prop = c(.1, .25, .5)
+amp_par <- expand.grid(dat_nr = 1:nrow(dat_par), mis_mech = mis_mech, mis_type = mis_type, mis_prop = mis_prop, stringsAsFactors = FALSE)
+# imputation parameters
+imp_meth = c("none", "mean", "norm.predict", "norm") 
+n_imp = c(1, 5)
+n_it = c(1, 5, 10)
+imp_par <- expand.grid(amp_nr = 1:nrow(amp_par), imp_meth = imp_meth, n_imp = n_imp, n_it = n_it, stringsAsFactors = FALSE)
+```
+
+To generate the incomplete data for each condition we use:
+
+```{r test_cond, eval=FALSE, include=FALSE}
+all_dat <- purrr::pmap(dat_par, ~{generation(n = ..1, r = ..2)})
+all_amp <- purrr::pmap(amp_par, ~{amputation(all_dat[[..1]], mech = ..2, type = ..3, prop = ..4)})
+all_imp <- purrr::pmap_dfr(imp_par, ~{imputation(all_amp[[..1]], meth = ..2, m = ..3, it = ..4) %>% 
+    evaluation()})
 ```
 

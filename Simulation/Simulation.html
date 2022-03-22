@@ -255,6 +255,7 @@ if (window.hljs) {
 
 
 
+
 <style type="text/css">
 .main-container {
   max-width: 940px;
@@ -275,6 +276,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -398,52 +402,171 @@ pre code {
 </ul>
 <p>Performance evaluation: - estimand (average, regression coefficient) - diagnostic (bias, coverage rate, confidence interval width, cell rmse, analysis model rmse)</p>
 </div>
-<div id="simulation-functions" class="section level1">
-<h1>Simulation functions</h1>
+<div id="simulation-set-up" class="section level1">
+<h1>Simulation set-up</h1>
+<p>Set-up environment:</p>
+<pre class="r"><code># random seed
+set.seed(2022)
+# packages
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code># utils functions
+rmse &lt;- function(obs, pred = 0){sqrt(mean((obs-pred)^2))}</code></pre>
+<div id="simulation-functions" class="section level2">
+<h2>Simulation functions</h2>
 <p>For data generation we use the following:</p>
-<pre class="r"><code>generation &lt;- function(r, n = c(50, 500, 5000), p = 2) {
+<pre class="r"><code>generation &lt;- function(r = 0.4, n = 500, p = 2) {
   # generate data based on variance-covariance matrix
   vcov &lt;- matrix(r, p, p)
   diag(vcov) &lt;- 1
-  dat &lt;- data.frame(mvtnorm::rmvnorm(
-    n = max(n),
+  dat &lt;- data.frame(
+    mvtnorm::rmvnorm(
+    n,
     mean = rep(0, p),
     sigma = vcov
   )) %&gt;% setNames(paste0(&quot;X&quot;, 1:p))
-  # split output by number of observations
-  out &lt;- purrr::map(n, ~{
-    list(n_obs = .x,
-         p = p,
-         r = r,
-         dat = dat[1:.x,])
-  })
+  # output
+  out &lt;- list(
+    n_obs = n,
+    n_var = p,
+    corr = r,
+    dat = dat)
   return(out)
 }</code></pre>
 <p>For amputation of the complete data:</p>
-<pre class="r"><code>amputation &lt;- function(dat, mech, type, prop) {
+<pre class="r"><code>amputation &lt;- function(datlist, mech = &quot;MAR&quot;, type = &quot;MID&quot;, prop = 0.25) {
   # induce missingness
-  amp &lt;- dat %&gt;%
-    mice::ampute(prop = prop,
+  amp &lt;- mice::ampute(datlist$dat, 
+                 prop = prop,
                  mech = mech,
                  type = type)
   # output
-  out &lt;- amp
+  out &lt;- list(
+    n_obs = datlist$n_obs,
+    n_var = datlist$n_var,
+    corr = datlist$corr,
+    mis_mech = mech,
+    mis_type = type,
+    mis_prop = prop,
+    amp = amp)
   return(out)
 }</code></pre>
 <p>To impute the incomplete data:</p>
-<pre class="r"><code>imputation &lt;- function(amp, meth, m = 5, it = 10) {
-  imp &lt;- amp$amp %&gt;%
-    mice::mice(
-      m = m,
-      method = meth,
-      maxit = it,
-      print = FALSE
-    )
+<pre class="r"><code>imputation &lt;- function(amplist, meth = &quot;norm&quot;, m = 5, it = 5) {
+  # for CCA
+  if(meth == &quot;none&quot;) {
+    imp &lt;- na.omit(amplist$amp$amp)
+    average &lt;- mean(imp$X1)
+    rmse_cell &lt;- NA
+  } 
+  # for actual imputation methods
+  if (meth != &quot;none&quot;) {
+    if (meth == &quot;mean&quot; | meth == &quot;norm.predict&quot;) {
+      imp &lt;- mice::mice(
+        amplist$amp$amp,
+        m = 1,
+        method = meth,
+        maxit = 1,
+        print = FALSE
+      )
+    } else {
+    imp &lt;- mice::mice(
+        amplist$amp$amp,
+        m = m,
+        method = meth,
+        maxit = it,
+        print = FALSE
+      )
+    }
+    average &lt;- mice::complete(imp, &quot;long&quot;) %&gt;% .$X1 %&gt;% mean()
+    rmse_cell &lt;- apply(imp$imp$X1 - amplist$amp$data$X1[imp$where[, &quot;X1&quot;]], 2, rmse) %&gt;% mean()
+  }
   # output
-  out &lt;- imp
+  out &lt;- list(
+    n_obs = amplist$n_obs,
+    n_var = amplist$n_var,
+    corr = amplist$corr,
+    mis_mech = amplist$mis_mech,
+    mis_type = amplist$mis_type,
+    mis_prop = amplist$mis_prop,    
+    imp_meth = meth,
+    n_imp = m,
+    n_it = it,
+    average = average,
+    rmse_cell = rmse_cell,
+    imp = imp
+  )
   return(out)
 }</code></pre>
 <p>And finally, for performance evaluation:</p>
+<pre class="r"><code>evaluation &lt;- function(implist){
+  # for CCA
+  if (is.data.frame(implist$imp)) {
+    fit &lt;- lm(X1 ~ ., implist$imp)
+    rmse_pred &lt;- rmse(fit$residuals)
+  }
+  # for actual imputation methods
+  if (mice::is.mids(implist$imp)) {
+    mira &lt;- mice::complete(implist$imp, &quot;all&quot;) %&gt;% 
+      purrr::map(~lm(X1 ~ ., .))
+    fit &lt;- suppressWarnings(mice::pool(mira))
+    rmse_pred &lt;- purrr::map_dbl(mira, ~rmse(.$residuals)) %&gt;% mean()
+  }
+  # get estimated regression coefficients
+  est &lt;- fit %&gt;% broom::tidy(conf.int = TRUE) %&gt;%
+    .[2, c(&quot;estimate&quot;, &quot;conf.low&quot;, &quot;conf.high&quot;)] 
+  # output
+  out &lt;- data.frame(
+    n_obs = implist$n_obs,
+    n_var = implist$n_var,
+    corr = implist$corr,
+    mis_mech = implist$mis_mech,
+    mis_type = implist$mis_type,
+    mis_prop = implist$mis_prop,    
+    imp_meth = implist$imp_meth,
+    n_imp = implist$n_imp,
+    n_it = implist$n_it,
+    average = implist$average, 
+    coeff = est$estimate, 
+    ci_ll = est$conf.low,
+    ci_ul = est$conf.high,
+    rmse_pred = rmse_pred, 
+    rmse_cell = implist$rmse_cell
+  )
+  return(out)
+}</code></pre>
+<p>The combined function will consist of these steps:</p>
+<pre class="r"><code>dat &lt;- generation()
+amp &lt;- amputation(dat)
+imp &lt;- imputation(amp)
+est &lt;- evaluation(imp)</code></pre>
+</div>
+<div id="simulation-conditions" class="section level2">
+<h2>Simulation conditions</h2>
+<p>The full simulation function will be applied to these conditions:</p>
+<pre class="r"><code># data generation parameters
+n_obs = c(50, 500, 5000) 
+corr = c(0, .4, .8)
+dat_par &lt;- expand.grid(n_obs = n_obs, corr = corr)
+# amputation parameters
+mis_mech = c(&quot;MCAR&quot;, &quot;MAR&quot;, &quot;MNAR&quot;)
+mis_type = c(&quot;LEFT&quot;, &quot;RIGHT&quot;, &quot;MID&quot;, &quot;TAIL&quot;)
+mis_prop = c(.1, .25, .5)
+amp_par &lt;- expand.grid(dat_nr = 1:nrow(dat_par), mis_mech = mis_mech, mis_type = mis_type, mis_prop = mis_prop, stringsAsFactors = FALSE)
+# imputation parameters
+imp_meth = c(&quot;none&quot;, &quot;mean&quot;, &quot;norm.predict&quot;, &quot;norm&quot;) 
+n_imp = c(1, 5)
+n_it = c(1, 5, 10)
+imp_par &lt;- expand.grid(amp_nr = 1:nrow(amp_par), imp_meth = imp_meth, n_imp = n_imp, n_it = n_it, stringsAsFactors = FALSE)</code></pre>
+<p>To generate the incomplete data for each condition we use:</p>
+</div>
 </div>
 
 

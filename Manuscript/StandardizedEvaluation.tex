@@ -36,7 +36,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={Towards a standardized evaluation of multiple imputation routines},
+  pdftitle={Towards a standardized evaluation of imputation routines},
   pdfauthor={Hanne Oberman and Gerko Vink},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
@@ -55,9 +55,6 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-\usepackage[normalem]{ulem}
-% Avoid problems with \sout in headers with hyperref
-\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -89,8 +86,7 @@
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 
-\title{Towards a standardized evaluation of multiple imputation
-routines}
+\title{Towards a standardized evaluation of imputation routines}
 \author{Hanne Oberman and Gerko Vink}
 \date{19-1-2022}
 
@@ -112,44 +108,36 @@ evaluating missing data problems.
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-Multiple imputation (Donald B. Rubin 1987) is a state-of-the-art
-technique for drawing valid conclusions from incomplete data. The
-technique has earned a permanent spot in research and policy making,
-demonstrated e.g.~by the detailed manual created by the National
-Research Council (Roderick J. Little et al. 2012). Although a top-down
-enforcement of valid ways to handle missing data is not yet very
-pronounced, an increasing amount of researchers are embracing multiple
-imputation techniques. After all, the principle of multiple imputation
+Imputation is a state-of-the-art technique for drawing valid conclusions
+from incomplete data. The technique has earned a permanent spot in
+research and policy making, demonstrated e.g.~by the detailed manual
+created by the National Research Council (Roderick J. Little et al.
+2012). Although a top-down enforcement of valid ways to handle missing
+data is not yet very pronounced, an increasing amount of researchers are
+embracing imputation techniques. After all, the principle of imputation
 is very intuitive.
 
-The idea behind multiple imputation is to impute (fill in) the missing
-values in incomplete data multiple times, to obtain a valid estimate of
-what could have been observed. The multiple datasets that are thus
-obtained can be analyzed by standard techniques and the analysis results
-can be combined into a single inference. In contrast to ad hoc methods
+The idea behind imputation is to impute (fill in) missing values, to
+obtain a valid estimate of what could have been. A popular variant is
+multiple imputation (Donald B. Rubin 1976), wherein missing values are
+imputed multiple times. The data that are thus obtained can be analyzed
+by standard techniques and, in the case of multiple imputation, the
+analysis results can be combined into a single inference {[}using
+Rubin's rules; Donald B. Rubin (1987){]}. In contrast to ad hoc methods
 for dealing with missing values (e.g.~list-wise deletion, mean
-imputation, last observation carried forward), multiple imputation
-properly takes the sources of uncertainty that are related to the
-missingness problem into account. {[}It has been empirically
-demonstrated time and again that the inferences on multiply imputed data
-yield unbiased and confidence valid results (through Rubin's rules). But
-how do we know that this is the case, if we do not have access to the
-true but unobserved values of the missing entries? And how can we be
-sure that extensions to the methodology yield valid inferences too?
-Especially in the field of ML/AI, there are promising new imputation
-methods, which may yield even sharper imputations than now-standard
-(semi-)parametric imputation methods. That's why we use simulation
-studies for the evaluation of imputation routines.{]}
+imputation, regression imputation, last observation carried forward,
+indicator method), multiple imputation properly takes the sources of
+uncertainty that are related to the missingness problem into account.
 
-\sout{The quality of a solution obtained by multiple imputation depends
-on the statistical properties of the incomplete data and the degree to
-which an imputation procedure is able to capture these properties when
-modeling missing values. In general it holds that modeling missing data
-becomes more challenging when the amount of missingness increases.
-However, when (strong) relations in the data are present, the observed
-parts can hold great predictive power for the models that estimate the
-missingness. In that case, multiple imputation would be substantially
-more efficient than the ubiquitous list-wise deletion.}
+The quality of a solution obtained by imputation depends on the
+statistical properties of the incomplete data and the degree to which an
+imputation procedure is able to capture these properties when modeling
+missing values. In general it holds that modeling missing data becomes
+more challenging when the amount of missingness increases. However, when
+(strong) relations in the data are present, the observed parts can hold
+great predictive power for the models that estimate the missingness. In
+that case, (multiple) imputation would be substantially more efficient
+than the ubiquitous list-wise deletion.
 
 When evaluating the statistical properties (and thereby the practical
 applicability) of imputation methodology, researchers most often make
@@ -160,7 +148,10 @@ set of evaluation criteria is postulated to evaluate the performance of
 the imputation methods. However, no golden standard has been established
 to evaluate these imputation routines and, as a result, the validity of
 the simulation procedures may differ tremendously from one developer to
-another.
+another. {[}Nowadays there are a lot of imp alg being propagated, esp
+ai/ml, whose perf often times seems quite promising. But may not be a
+fair comparison because of the simulation set-up/dev in ai/ml so fast
+that steps may be skipped{]}
 
 The purpose of this paper is threefold: First, to raise some concerns
 with respect to evaluating imputation methodology. These concerns stem
@@ -196,15 +187,13 @@ evaluation of the imputation routines.
 \hypertarget{data-generation-problems}{%
 \subsection{Data generation problems}\label{data-generation-problems}}
 
-To evaluate the ability of an imputation routine to handle \sout{the
-non-response model} {[}missing data entries{]}, a form of truth has to
-be established. Those who perform simulation studies are in the luxury
-position to establish the truth beforehand, by choosing a data
-generating mechanism to obtain a complete dataset. Complete data is
-typically either generated from a statistical model, or sampled from a
-sufficiently large \sout{observed} set {[}model-based vs design-based
-simulation{]}. \sout{However, when generating data, two easily
-overlooked problems may arise.}
+To evaluate the ability of an imputation routine to handle missingness,
+a form of truth has to be established. Those who perform simulation
+studies are in the luxury position to establish the truth beforehand, by
+choosing a data generating mechanism to obtain a complete dataset.
+Complete data is typically either generated from a statistical model, or
+sampled from a sufficiently large observed set {[}model-based vs
+design-based simulation{]}.
 
 The problem with model-based data generating mechanisms is that method
 performance may not translate to empirical data. First, data are often
@@ -298,12 +287,12 @@ imputation approach and unnecessarily lowering the statistical power.
 {[}Briefly introduce missingness mechanisms here and show potential
 problems, but without simulation results (moved to separate section).
 This part should contain: 1) definitions of mechanisms, 2) that MCAR is
-often ignored, while it's the minimum requirement and sometimes
-realistic in practice, 3) that MAR can be generated \emph{spuriously} if
-the correlation between variables is low, and 4) that MNAR is often
-ignored, while it may be the most realistic in practice. And finally
-something about types of M(N)AR, but what are specific problems with
-that?{]}
+often ignored, while it's the minimum requirement and reference, and
+sometimes realistic in practice, 3) that MAR can be generated
+\emph{spuriously} if the correlation between variables is low, and 4)
+that MNAR is often ignored, while it may be the most realistic in
+practice. And finally something about types of M(N)AR, but what are
+specific problems with that? ref dance paper rianne{]}
 
 \hypertarget{section}{%
 \section{}\label{section}}
@@ -432,11 +421,6 @@ different fields could have a different focus on the problem at hand.
 But the choice of performance measure(s) may inadvertently distort
 statistical properties of the imputed data.
 
-\sout{However, because multiple imputation was designed as a mode for
-statistical inference, a minimal set of statistical properties should at
-least be evaluated. We highlight four aspects of evaluation that should
-be considered when evaluation imputation routines.}
-
 Developers often only inquire about the `accuracy' (i.e.~how well can
 the method reproduce the original data). {[}Add RMSE at cell level
 here?{]} The goal of multiple imputation is not to reproduce the data,
@@ -479,11 +463,6 @@ performance drop, comparative simulations with e.g.~nonparametric models
 should be executed. A method may perform badly, but if it still
 outperforms every other approach, it may yet be of great practical
 relevance.
-
-\hypertarget{illustration}{%
-\section{Illustration}\label{illustration}}
-
-{[}Add simulation study + results here!{]}
 
 \hypertarget{suggested-course-of-action}{%
 \section{Suggested course of action}\label{suggested-course-of-action}}
@@ -710,6 +689,110 @@ be obtained and truth could be established by removing the incomplete
 cases from the data. However, the real-world missingness would then be
 omitted.
 
+\hypertarget{step-4.-report}{%
+\subsection{Step 4. Report}\label{step-4.-report}}
+
+Report at least the following:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  set-up
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  aim
+\item
+  number of simulations
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  data generation
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  model vs design based
+\item
+  data types
+\item
+  sample vs population (vs bootstrapping??)
+\item
+  number of observations
+\item
+  number of variables
+\item
+  coherence between variables
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  missingness generation
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  monotone/univariate vs multivariate
+\item
+  missingness mechanism
+\item
+  type of M(N)AR
+\item
+  missingness proportion
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  missing data methods
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  imputation method
+\item
+  imputation model
+\item
+  number of imputations
+\item
+  number of iterations
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  performance evaluation
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  analysis model
+\item
+  estimand
+\item
+  diagnostic
+\item
+  ppc
+\end{itemize}
+
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
 
@@ -772,16 +855,16 @@ completed-data analyses were combined into a single inference following
 the rules described in Vink and van Buuren (2014).
 
 \begin{verbatim}
-## R version 4.1.3 (2022-03-10)
-## Platform: aarch64-apple-darwin20 (64-bit)
-## Running under: macOS Monterey 12.3
+## R version 4.1.2 (2021-11-01)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 19042)
 ## 
 ## Matrix products: default
-## BLAS:   /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/lib/libRblas.0.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/lib/libRlapack.dylib
 ## 
 ## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## [1] LC_COLLATE=Dutch_Netherlands.1252  LC_CTYPE=Dutch_Netherlands.1252   
+## [3] LC_MONETARY=Dutch_Netherlands.1252 LC_NUMERIC=C                      
+## [5] LC_TIME=Dutch_Netherlands.1252    
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
@@ -792,12 +875,12 @@ the rules described in Vink and van Buuren (2014).
 ## loaded via a namespace (and not attached):
 ##  [1] rstudioapi_0.13  knitr_1.37       magrittr_2.0.2   tidyselect_1.1.2
 ##  [5] R6_2.5.1         rlang_1.0.2      fastmap_1.1.0    fansi_1.0.2     
-##  [9] highr_0.9        stringr_1.4.0    tools_4.1.3      xfun_0.30       
+##  [9] highr_0.9        stringr_1.4.0    tools_4.1.2      xfun_0.30       
 ## [13] utf8_1.2.2       DBI_1.1.2        cli_3.2.0        htmltools_0.5.2 
 ## [17] ellipsis_0.3.2   assertthat_0.2.1 yaml_2.3.5       digest_0.6.29   
 ## [21] tibble_3.1.6     lifecycle_1.0.1  crayon_1.5.0     purrr_0.3.4     
 ## [25] vctrs_0.3.8      glue_1.6.2       evaluate_0.15    rmarkdown_2.13  
-## [29] stringi_1.7.6    compiler_4.1.3   pillar_1.7.0     generics_0.1.2  
+## [29] stringi_1.7.6    compiler_4.1.2   pillar_1.7.0     generics_0.1.2  
 ## [33] pkgconfig_2.0.3
 \end{verbatim}
 
