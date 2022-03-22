@@ -4,7 +4,9 @@ author: "Hanne Oberman and Gerko Vink"
 date: "19-1-2022"
 abstract: "Developing new imputation methodology has become a very active field. Unfortunately, there is no consensus on how to perform simulation studies to evaluate the properties of imputation methods. In this paper we propose a move towards a standardized evaluation of imputation methods. To demonstrate the need for standardization, we highlight a set of potential pitfalls that bring forth a chain of potential problems in the objective assessment of the performance of imputation routines. This may lead to suboptimal use of multiple imputation in practice. Additionally, we suggest a course of action for simulating and evaluating missing data problems."
 bibliography: StandardizedEvaluation.bib  
-output: pdf_document
+output: 
+  pdf_document:
+    keep_tex: true
 editor_options: 
   chunk_output_type: inline
 ---
