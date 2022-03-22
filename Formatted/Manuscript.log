@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.1.19)  19 JAN 2022 18:11
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.3.22)  22 MAR 2022 17:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**C:/Users/4216318/Desktop/StandardizedEvaluation/Tex/Semi_SEM_revise2.tex
-(c:/Users/4216318/Desktop/StandardizedEvaluation/Tex/Semi_SEM_revise2.tex
+**C:/Users/4216318/Desktop/StandardizedEvaluation/Formatted/Manuscript.tex
+(c:/Users/4216318/Desktop/StandardizedEvaluation/Formatted/Manuscript.tex
 LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-01-12> (./w-art.cls
+L3 programming layer <2022-02-24> (./w-art.cls
 Document Class: w-art 2004/12/04 v0.9h document class for WILEY-VCH Verlag GmbH
  \& Co. KGaA, Weinheim
 \aux@tw=\skip47
@@ -195,7 +195,7 @@ LaTeX Font Warning: Font shape `TU/ptm/m/n' undefined
 
 (c:/Users/4216318/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3back
 end-xetex.def
-File: l3backend-xetex.def 2022-01-12 L3 backend support: XeTeX
+File: l3backend-xetex.def 2022-02-07 L3 backend support: XeTeX
 (|extractbb --version)
 \c__kernel_sys_dvipdfmx_version_int=\count280
 \l__color_backend_stack_int=\count281
@@ -205,8 +205,8 @@ File: l3backend-xetex.def 2022-01-12 L3 backend support: XeTeX
 \g__pdf_backend_object_int=\count284
 \g__pdf_backend_annotation_int=\count285
 \g__pdf_backend_link_int=\count286
-) (./Semi_SEM_revise2.aux)
-\openout1 = `Semi_SEM_revise2.aux'.
+) (./Manuscript.aux)
+\openout1 = `Manuscript.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 93.
 LaTeX Font Info:    ... okay on input line 93.
@@ -232,75 +232,71 @@ LaTeX Font Info:    ... okay on input line 93.
 Can't find sidecap.sty -- will use normal caption
 
 LaTeX Font Warning: Font shape `TU/ptm/b/n' undefined
-(Font)              using `TU/ptm/m/n' instead on input line 139.
+(Font)              using `TU/ptm/m/n' instead on input line 126.
 
 
 LaTeX Font Warning: Font shape `TU/ptm/m/it' undefined
-(Font)              using `TU/ptm/m/n' instead on input line 139.
+(Font)              using `TU/ptm/m/n' instead on input line 126.
 
-LaTeX Font Info:    Trying to load font information for TU+phv on input line 13
-9.
-LaTeX Font Info:    No file TUphv.fd. on input line 139.
+LaTeX Font Info:    Trying to load font information for TU+phv on input line 12
+6.
+LaTeX Font Info:    No file TUphv.fd. on input line 126.
 
 LaTeX Font Warning: Font shape `TU/phv/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 139.
+(Font)              using `TU/lmr/m/n' instead on input line 126.
 
-LaTeX Font Info:    Trying to load font information for TU+pcr on input line 17
-5.
-LaTeX Font Info:    No file TUpcr.fd. on input line 175.
+LaTeX Font Info:    Trying to load font information for TU+pcr on input line 16
+2.
+LaTeX Font Info:    No file TUpcr.fd. on input line 162.
 
 LaTeX Font Warning: Font shape `TU/pcr/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 175.
+(Font)              using `TU/lmr/m/n' instead on input line 162.
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[1
-
-]
 
 Package amsmath Warning: Foreign command \atop;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 193.
+(amsmath)                 on input line 180.
 
 File: empty.eps Graphic file (type eps)
 <empty.eps>
+[1
 
-Underfull \hbox (badness 10000) in paragraph at lines 228--230
+]
+Underfull \hbox (badness 10000) in paragraph at lines 215--217
 []\TU/ptm/m/it/9 Farrington, C.P. and Andrews, N. (2003). Outbreak detection: A
 pplication to
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 228--230
+Underfull \hbox (badness 10000) in paragraph at lines 215--217
 \TU/ptm/m/it/9 infectious disease surveillance. In: Monitoring the Health of Po
 pulations
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 228--230
+Underfull \hbox (badness 10000) in paragraph at lines 215--217
 \TU/ptm/m/it/9 (eds. R. Brookmeyer and D. F. Stroup), Oxford University Press, 
 Oxford,
  []
 
-[2] [3]
+[2]
 
 Class w-art Warning: copyrightyear 2004 in copyrightinfo differs from currentye
-ar 2010 in Year of issueinfo on input line 234.
+ar 2010 in Year of issueinfo on input line 221.
 
-[4] (./Semi_SEM_revise2.aux)
+[3] (./Manuscript.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  )
-(\end occurred when \iffalse on line 139 was incomplete) 
+(\end occurred when \iffalse on line 126 was incomplete) 
 Here is how much of TeX's memory you used:
- 2744 strings out of 478189
- 41152 string characters out of 5852969
- 353524 words of memory out of 5000000
- 23338 multiletter control sequences out of 15000+600000
+ 2744 strings out of 478179
+ 41110 string characters out of 5852732
+ 355972 words of memory out of 5000000
+ 23348 multiletter control sequences out of 15000+600000
  473179 words of font info for 49 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 69i,9n,76p,620b,340s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 69i,9n,76p,745b,340s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Semi_SEM_revise2.pdf (4 pages).
+Output written on Manuscript.pdf (3 pages).
