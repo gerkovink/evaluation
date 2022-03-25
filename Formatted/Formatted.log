@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.3.22)  22 MAR 2022 17:18
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.3.22)  25 MAR 2022 20:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**C:/Users/4216318/Desktop/StandardizedEvaluation/Formatted/Manuscript.tex
-(c:/Users/4216318/Desktop/StandardizedEvaluation/Formatted/Manuscript.tex
+**C:/Users/4216318/Desktop/StandardizedEvaluation/Formatted/Formatted.tex
+(c:/Users/4216318/Desktop/StandardizedEvaluation/Formatted/Formatted.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-02-24> (./w-art.cls
 Document Class: w-art 2004/12/04 v0.9h document class for WILEY-VCH Verlag GmbH
@@ -153,38 +153,6 @@ Package: natbib 2007/02/05 8.0 (PWD)
 LaTeX Info: Redefining \cite on input line 602.
 \c@NAT@ctr=\count278
 )
-\c@criterion=\count279
-
-(c:/Users/4216318/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphic
-x.sty
-Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
-
-(c:/Users/4216318/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/keyval.
-sty
-Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks27
-)
-(c:/Users/4216318/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphic
-s.sty
-Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
-
-(c:/Users/4216318/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/trig.st
-y
-Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
-)
-(c:/Users/4216318/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/gra
-phics.cfg
-File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
-)
-Package graphics Info: Driver file: xetex.def on input line 107.
-
-(c:/Users/4216318/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-def/xet
-ex.def
-File: xetex.def 2021/03/18 v5.0k Graphics/color driver for xetex
-))
-\Gin@req@height=\dimen154
-\Gin@req@width=\dimen155
-)
 LaTeX Font Info:    Trying to load font information for TU+ptm on input line 93
 .
 LaTeX Font Info:    No file TUptm.fd. on input line 93.
@@ -197,16 +165,16 @@ LaTeX Font Warning: Font shape `TU/ptm/m/n' undefined
 end-xetex.def
 File: l3backend-xetex.def 2022-02-07 L3 backend support: XeTeX
 (|extractbb --version)
-\c__kernel_sys_dvipdfmx_version_int=\count280
-\l__color_backend_stack_int=\count281
-\g__color_backend_stack_int=\count282
-\g__graphics_track_int=\count283
+\c__kernel_sys_dvipdfmx_version_int=\count279
+\l__color_backend_stack_int=\count280
+\g__color_backend_stack_int=\count281
+\g__graphics_track_int=\count282
 \l__pdf_internal_box=\box53
-\g__pdf_backend_object_int=\count284
-\g__pdf_backend_annotation_int=\count285
-\g__pdf_backend_link_int=\count286
-) (./Manuscript.aux)
-\openout1 = `Manuscript.aux'.
+\g__pdf_backend_object_int=\count283
+\g__pdf_backend_annotation_int=\count284
+\g__pdf_backend_link_int=\count285
+) (./Formatted.aux)
+\openout1 = `Formatted.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 93.
 LaTeX Font Info:    ... okay on input line 93.
@@ -232,71 +200,59 @@ LaTeX Font Info:    ... okay on input line 93.
 Can't find sidecap.sty -- will use normal caption
 
 LaTeX Font Warning: Font shape `TU/ptm/b/n' undefined
-(Font)              using `TU/ptm/m/n' instead on input line 126.
+(Font)              using `TU/ptm/m/n' instead on input line 123.
+
+LaTeX Font Info:    Trying to load font information for TU+phv on input line 12
+3.
+LaTeX Font Info:    No file TUphv.fd. on input line 123.
+
+LaTeX Font Warning: Font shape `TU/phv/m/n' undefined
+(Font)              using `TU/lmr/m/n' instead on input line 123.
 
 
 LaTeX Font Warning: Font shape `TU/ptm/m/it' undefined
-(Font)              using `TU/ptm/m/n' instead on input line 126.
-
-LaTeX Font Info:    Trying to load font information for TU+phv on input line 12
-6.
-LaTeX Font Info:    No file TUphv.fd. on input line 126.
-
-LaTeX Font Warning: Font shape `TU/phv/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 126.
-
-LaTeX Font Info:    Trying to load font information for TU+pcr on input line 16
-2.
-LaTeX Font Info:    No file TUpcr.fd. on input line 162.
-
-LaTeX Font Warning: Font shape `TU/pcr/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 162.
+(Font)              using `TU/ptm/m/n' instead on input line 123.
 
 
-Package amsmath Warning: Foreign command \atop;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 180.
+Overfull \vbox (1.9253pt too high) has occurred while \output is active []
 
-File: empty.eps Graphic file (type eps)
-<empty.eps>
 [1
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 215--217
-[]\TU/ptm/m/it/9 Farrington, C.P. and Andrews, N. (2003). Outbreak detection: A
-pplication to
+] [2] [3] [4] [5]
+Overfull \hbox (5.51662pt too wide) in paragraph at lines 277--293
+ [] 
  []
 
+[6]
 
-Underfull \hbox (badness 10000) in paragraph at lines 215--217
-\TU/ptm/m/it/9 infectious disease surveillance. In: Monitoring the Health of Po
-pulations
+LaTeX Warning: Reference `dgm_truth' on page 7 undefined on input line 321.
+
+[7]
+Overfull \hbox (9.85666pt too wide) in paragraph at lines 364--388
+ [] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 215--217
-\TU/ptm/m/it/9 (eds. R. Brookmeyer and D. F. Stroup), Oxford University Press, 
-Oxford,
- []
-
-[2]
+[8] [9] [10] (./Formatted.bbl [11])
 
 Class w-art Warning: copyrightyear 2004 in copyrightinfo differs from currentye
-ar 2010 in Year of issueinfo on input line 221.
+ar 2010 in Year of issueinfo on input line 551.
 
-[3] (./Manuscript.aux)
+[12] (./Formatted.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: There were undefined references.
+
  )
-(\end occurred when \iffalse on line 126 was incomplete) 
+(\end occurred when \iffalse on line 123 was incomplete) 
 Here is how much of TeX's memory you used:
- 2744 strings out of 478179
- 41110 string characters out of 5852732
- 355972 words of memory out of 5000000
- 23348 multiletter control sequences out of 15000+600000
+ 2222 strings out of 478179
+ 33661 string characters out of 5852732
+ 351219 words of memory out of 5000000
+ 22846 multiletter control sequences out of 15000+600000
  473179 words of font info for 49 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 69i,9n,76p,745b,340s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 69i,9n,76p,1960b,340s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Manuscript.pdf (3 pages).
+Output written on Formatted.pdf (12 pages).
