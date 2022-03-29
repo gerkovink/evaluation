@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.3.22)  29 MAR 2022 15:46
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.3.22)  29 MAR 2022 17:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -219,23 +219,23 @@ Overfull \vbox (1.9253pt too high) has occurred while \output is active []
 [1
 
 ] [2] [3] [4] [5]
-Overfull \hbox (5.51662pt too wide) in paragraph at lines 282--298
+Overfull \hbox (5.51662pt too wide) in paragraph at lines 283--299
  [] 
  []
 
 [6]
 
-LaTeX Warning: Reference `dgm_truth' on page 7 undefined on input line 328.
+LaTeX Warning: Reference `dgm_truth' on page 7 undefined on input line 333.
 
 [7]
-Overfull \hbox (9.85666pt too wide) in paragraph at lines 371--395
+Overfull \hbox (9.85666pt too wide) in paragraph at lines 376--400
  [] 
  []
 
 [8] [9] [10] (./Formatted.bbl [11])
 
 Class w-art Warning: copyrightyear 2004 in copyrightinfo differs from currentye
-ar 2010 in Year of issueinfo on input line 558.
+ar 2010 in Year of issueinfo on input line 563.
 
 [12] (./Formatted.aux)
 
@@ -253,6 +253,6 @@ Here is how much of TeX's memory you used:
  22846 multiletter control sequences out of 15000+600000
  473179 words of font info for 49 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 69i,9n,76p,1671b,344s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 69i,9n,76p,1671b,340s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on Formatted.pdf (12 pages).

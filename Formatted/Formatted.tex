@@ -305,9 +305,13 @@ Step                    & Simulation aspects under consideration \\
 
 \subsection{Set scope}
 
-[Substeps for the simulator include: Define aim. Choose scope (e.g. data source, target) and imputation methods to evaluate. Ideally, perform fully factorial design, see \citet{morr18}. Set tolerable level of uncertainty and use this to pick a number of simulation repetitions. Choose general set-up/simulation flow: are the missing data methods all applied to the same incomplete dataset in each simulation repetition, or is a new incomplete set created per method?] 
-
+Before setting up their simulation study, the simulator should clearly define the scope of their evaluations. Evaluating imputation methodology may entail e.g. comparisons between several imputation methods, investigations of the validity of a single (novel) method, or an application to varying characteristics of a specific use case. The choice of imputation method(s) under evaluation and the simulation study's aims are highly intertwined. 
 [Add that some simulation studies do not use a `ground truth' at all, they just look for the method with the best predictive performance for a certain completely observed target variable. These studies apply different combinations of imputation and estimation methods on one or more benchmark data sets, and assess the RMSE of the predicted values after imputation and estimation to say something about the comparative performance of the methods. Refer to missing data chapter \citep{liu21}. In this context, there is no talk of retrieving the `true' but unobserved values at all. The DGM is by definition design-based and there is no sampling variance. The missingness generation step is skipped and the only performance measure that can be used between methods is RMSE and maybe comparison with repect to CCA in terms of bias.]
+
+The scope of the study also encompasses the general simulation design. Ideally, one should perform fully factorial design, where each simulation condition is varied against all other conditions. This is important because there are known interaction effects between e.g. missingness proportions and missingness mechanisms. If multiple imputation methods are under evaluation (and/or parallel computing is used), it may be wise to split-up the simulation workflow into separate parts, such that each imputation method is applied to the same incomplete dataset within every simulation repetition.
+
+Other aspects to consider at this stage are the required precision level of the study and the number of simulation repetitions. The tolerable level of uncertainty in terms of Monte Carlo error for each of the performance measures may be used to pick a number of simulation repetitions \citep[see e.g.][]{morr18}. 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
