@@ -40,8 +40,8 @@ This website accompanies the manuscript *Towards a standardized evaluation of im
 
 The [full publication archive can be found here](https://github.com/gerkovink/evaluation). Further links are:
 
-- [The manuscript](LINK TO MANUSCRIPT)
-- [The checklist](LINK TO CHECKLIST)
+- [The manuscript](https://github.com/gerkovink/evaluation/blob/main/Manuscript/Towards_a_standardized_evaluation_of_imputation_methodology.pdf)
+- [The checklist](https://github.com/gerkovink/evaluation/blob/main/Checklist/Checklist.pdf)
 
 All the best, 
 
