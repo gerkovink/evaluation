@@ -143,10 +143,6 @@ Rubin, D.~B. (1987).
 \newblock Wiley Series in Probability and Mathematical Statistics {{Applied}}
   Probability and Statistics. {Wiley}, {New York, NY}.
 
-\bibitem[Schomaker, 2021]{scho21}
-Schomaker, M. (2021).
-\newblock Regression and {{Causality}}.
-
 \bibitem[Schouten et~al., 2018]{ampute}
 Schouten, R.~M., Lugtig, P., and Vink, G. (2018).
 \newblock Generating missing values for simulation purposes: A multivariate
@@ -171,6 +167,12 @@ Shara, N., Yassin, S.~A., Valaitis, E., Wang, H., Howard, B.~V., Wang, W., Lee,
 \newblock Randomly and non-randomly missing renal function data in the strong
   heart study: A comparison of imputation methods.
 \newblock {\em PloS one}, 10(9):e0138923.
+
+\bibitem[Sperrin et~al., 2020]{sper20}
+Sperrin, M., Martin, G.~P., Sisk, R., and Peek, N. (2020).
+\newblock Missing data should be handled differently for prediction than for
+  description or causal explanation.
+\newblock {\em Journal of Clinical Epidemiology}, 125:183--187.
 
 \bibitem[Van~Buuren, 2018]{buur18}
 Van~Buuren, S. (2018).
