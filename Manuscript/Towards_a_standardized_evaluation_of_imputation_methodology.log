@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.15)  22 JUL 2022 17:10
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.26)  26 JUL 2022 19:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **C:/Users/4216318/Desktop/StandardizedEvaluation/Manuscript/Towards_a_standardized_evaluation_of_imputation_methodology.tex
 (c:/Users/4216318/Desktop/StandardizedEvaluation/Manuscript/Towards_a_standardized_evaluation_of_imputation_methodology.tex
 LaTeX2e <2022-06-01> patch level 5
-L3 programming layer <2022-07-04> (./w-art.cls
+L3 programming layer <2022-07-15> (./w-art.cls
 Document Class: w-art 2004/12/04 v0.9h document class for WILEY-VCH Verlag GmbH \& Co. KGaA, Weinheim
 \aux@tw=\skip47
 \TitleWidth=\skip48
@@ -148,12 +148,19 @@ Package: natbib 2007/02/05 8.0 (PWD)
 \bibsep=\skip68
 LaTeX Info: Redefining \cite on input line 602.
 \c@NAT@ctr=\count278
+) (c:/Users/4216318/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
-LaTeX Font Info:    Trying to load font information for TU+ptm on input line 93.
-LaTeX Font Info:    No file TUptm.fd. on input line 93.
+LaTeX Font Info:    Trying to load font information for TU+ptm on input line 94.
+LaTeX Font Info:    No file TUptm.fd. on input line 94.
 
 LaTeX Font Warning: Font shape `TU/ptm/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 93.
+(Font)              using `TU/lmr/m/n' instead on input line 94.
 
 (c:/Users/4216318/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
 File: l3backend-xetex.def 2022-07-01 L3 backend support: XeTeX
@@ -165,98 +172,94 @@ File: l3backend-xetex.def 2022-07-01 L3 backend support: XeTeX
 ) (./Towards_a_standardized_evaluation_of_imputation_methodology.aux)
 \openout1 = `Towards_a_standardized_evaluation_of_imputation_methodology.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 93.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 93.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 94.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 94.
 (c:/Users/4216318/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
 Can't find sidecap.sty -- will use normal caption
 
 LaTeX Font Warning: Font shape `TU/ptm/b/n' undefined
-(Font)              using `TU/ptm/m/n' instead on input line 123.
+(Font)              using `TU/ptm/m/n' instead on input line 124.
 
-LaTeX Font Info:    Trying to load font information for TU+phv on input line 123.
-LaTeX Font Info:    No file TUphv.fd. on input line 123.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 124.
+(c:/Users/4216318/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 124.
+(c:/Users/4216318/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for TU+phv on input line 124.
+LaTeX Font Info:    No file TUphv.fd. on input line 124.
 
 LaTeX Font Warning: Font shape `TU/phv/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 123.
+(Font)              using `TU/lmr/m/n' instead on input line 124.
 
 
 LaTeX Font Warning: Font shape `TU/ptm/m/it' undefined
-(Font)              using `TU/ptm/m/n' instead on input line 123.
+(Font)              using `TU/ptm/m/n' instead on input line 124.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 123--123
+Underfull \hbox (badness 10000) in paragraph at lines 124--124
 
  []
+
+
+Overfull \vbox (1.82141pt too high) has occurred while \output is active []
 
 [1
 
 ]
 
-Package natbib Warning: Citation `pawe22' on page 2 undefined on input line 162.
+LaTeX Warning: Reference `table:steps' on page 2 undefined on input line 157.
 
-[2] [3] [4]
+[2] [3] [4] [5]
 
-Package natbib Warning: Citation `scho21' on page 5 undefined on input line 243.
-
-
-Package natbib Warning: Citation `scho21' on page 5 undefined on input line 243.
+LaTeX Warning: Reference `table:mech' on page 6 undefined on input line 287.
 
 
-Overfull \hbox (153.75665pt too wide) in paragraph at lines 245--264
- [] 
- []
-
-[5]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 2698) has occurred while \output is active []
 
 [6]
-Underfull \vbox (badness 6396) has occurred while \output is active []
 
-[7] [8] [9] [10]
+LaTeX Warning: Reference `table:mech' on page 7 undefined on input line 305.
 
-Package natbib Warning: Citation `pawe22' on page 11 undefined on input line 409.
+[7] [8] [9] [10] (./Towards_a_standardized_evaluation_of_imputation_methodology.bbl [11] [12])
 
+Class w-art Warning: copyrightyear 2004 in copyrightinfo differs from currentyear 2010 in Year of issueinfo on input line 527.
 
-Underfull \vbox (badness 1184) has occurred while \output is active []
-
-[11] (./Towards_a_standardized_evaluation_of_imputation_methodology.bbl [12] [13])
-
-Class w-art Warning: copyrightyear 2004 in copyrightinfo differs from currentyear 2010 in Year of issueinfo on input line 513.
-
-[14]
-
-Package natbib Warning: There were undefined citations.
-
-(./Towards_a_standardized_evaluation_of_imputation_methodology.aux)
+[13] (./Towards_a_standardized_evaluation_of_imputation_methodology.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
- )
-(\end occurred when \iffalse on line 123 was incomplete) 
-Here is how much of TeX's memory you used:
- 2264 strings out of 477865
- 35023 string characters out of 5845268
- 359268 words of memory out of 5000000
- 23205 multiletter control sequences out of 15000+600000
- 473179 words of font info for 49 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
- 69i,9n,76p,1791b,360s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Towards_a_standardized_evaluation_of_imputation_methodology.pdf (14 pages).
+LaTeX Warning: There were undefined references.
+
+ )
+(\end occurred when \iffalse on line 124 was incomplete) 
+Here is how much of TeX's memory you used:
+ 2378 strings out of 477864
+ 37018 string characters out of 5845234
+ 360483 words of memory out of 5000000
+ 23304 multiletter control sequences out of 15000+600000
+ 475659 words of font info for 61 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 69i,9n,76p,2218b,348s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on Towards_a_standardized_evaluation_of_imputation_methodology.pdf (13 pages).
