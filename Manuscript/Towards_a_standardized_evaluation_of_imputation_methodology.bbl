@@ -12,6 +12,12 @@ Bondarenko, I. and Raghunathan, T. (2016).
   multiple imputations and imputation models.
 \newblock {\em Statistics in Medicine}, 35(17):3007--3020.
 
+\bibitem[Doretti et~al., 2018]{dore18}
+Doretti, M., Geneletti, S., and Stanghellini, E. (2018).
+\newblock Missing {{Data}}: {{A Unified Taxonomy Guided}} by {{Conditional
+  Independence}}.
+\newblock {\em International Statistical Review}, 86(2):189--204.
+
 \bibitem[Greenland, 2017]{gree17}
 Greenland, S. (2017).
 \newblock Invited {{Commentary}}: {{The Need}} for {{Cognitive Science}} in
@@ -48,6 +54,12 @@ Liu, D., Oberman, H.~I., Mu{\~n}oz, J., Hoogland, J., and Debray, T. P.~A.
 \newblock Quality control, data cleaning, imputation.
 \newblock In {\em Clinical Applications of Artificial Intelligence in
   Real-World Data}.
+
+\bibitem[Mealli and Rubin, 2015]{meal15}
+Mealli, F. and Rubin, D.~B. (2015).
+\newblock Clarifying missing at random and related definitions, and
+  implications when coupled with exchangeability.
+\newblock {\em Biometrika}, 102(4):995--1000.
 
 \bibitem[Meng, 1994]{meng94}
 Meng, X.-L. (1994).
@@ -147,6 +159,11 @@ Schouten, R.~M. and Vink, G. (2021).
 \newblock The {{Dance}} of the {{Mechanisms}}: {{How Observed Information
   Influences}} the {{Validity}} of {{Missingness Assumptions}}.
 \newblock {\em Sociological Methods \& Research}, 50(3):1243--1258.
+
+\bibitem[Seaman et~al., 2013]{seam13}
+Seaman, S., Galati, J., Jackson, D., and Carlin, J. (2013).
+\newblock What {{Is Meant}} by "{{Missing}} at {{Random}}"?
+\newblock {\em Statistical Science}, 28(2):257--268.
 
 \bibitem[Shara et~al., 2015]{shara2015randomly}
 Shara, N., Yassin, S.~A., Valaitis, E., Wang, H., Howard, B.~V., Wang, W., Lee,
