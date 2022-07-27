@@ -3,50 +3,49 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: Towards_a_standardized_evaluation_of_imputation_methodology.aux
 The style file: apalike.bst
 Database file #1: bibliography.bib
-Warning--I didn't find a database entry for "scho21"
 Warning--empty publisher in litt20
 Warning--empty publisher in liu21
 Warning--empty note in ober21
 Warning--empty journal in vink14
-You've used 34 entries,
+You've used 35 entries,
             1935 wiz_defined-function locations,
-            685 strings with 10131 characters,
-and the built_in function-call counts, 13594 in all, are:
-= -- 1322
-> -- 588
-< -- 17
-+ -- 202
-- -- 198
-* -- 1231
-:= -- 2397
-add.period$ -- 99
-call.type$ -- 34
-change.case$ -- 264
-chr.to.int$ -- 34
-cite$ -- 38
-duplicate$ -- 468
-empty$ -- 936
-format.name$ -- 248
-if$ -- 2591
+            688 strings with 10193 characters,
+and the built_in function-call counts, 13830 in all, are:
+= -- 1346
+> -- 595
+< -- 18
++ -- 204
+- -- 200
+* -- 1246
+:= -- 2444
+add.period$ -- 101
+call.type$ -- 35
+change.case$ -- 270
+chr.to.int$ -- 35
+cite$ -- 39
+duplicate$ -- 478
+empty$ -- 951
+format.name$ -- 251
+if$ -- 2634
 int.to.chr$ -- 1
 int.to.str$ -- 0
 missing$ -- 36
-newline$ -- 169
-num.names$ -- 102
-pop$ -- 215
+newline$ -- 173
+num.names$ -- 105
+pop$ -- 219
 preamble$ -- 1
-purify$ -- 268
+purify$ -- 274
 quote$ -- 0
-skip$ -- 350
+skip$ -- 359
 stack$ -- 0
-substring$ -- 1012
+substring$ -- 1024
 swap$ -- 31
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 196
+type$ -- 202
 warning$ -- 4
-while$ -- 113
+while$ -- 115
 width$ -- 0
-write$ -- 429
-(There were 5 warnings)
+write$ -- 439
+(There were 4 warnings)

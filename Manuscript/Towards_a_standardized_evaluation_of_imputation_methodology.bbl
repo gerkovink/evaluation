@@ -147,6 +147,10 @@ Rubin, D.~B. (1987).
 \newblock Wiley Series in Probability and Mathematical Statistics {{Applied}}
   Probability and Statistics. {Wiley}, {New York, NY}.
 
+\bibitem[Schomaker, 2021]{scho21}
+Schomaker, M. (2021).
+\newblock Regression and {{Causality}}.
+
 \bibitem[Schouten et~al., 2018]{ampute}
 Schouten, R.~M., Lugtig, P., and Vink, G. (2018).
 \newblock Generating missing values for simulation purposes: A multivariate
