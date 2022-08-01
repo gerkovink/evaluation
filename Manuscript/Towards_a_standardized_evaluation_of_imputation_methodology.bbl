@@ -110,6 +110,14 @@ Nguyen, C.~D., Carlin, J.~B., and Lee, K.~J. (2017).
 \newblock Model checking in multiple imputation: An overview and case study.
 \newblock {\em Emerging Themes in Epidemiology}, 14(1):8.
 
+\bibitem[Nijman et~al., 2020]{nijm20}
+Nijman, S. W.~J., Hoogland, J., Groenhof, T. K.~J., Brandjes, M., Jacobs, J.
+  J.~L., Bots, M.~L., Asselbergs, F.~W., Moons, K. G.~M., and Debray, T. P.~A.
+  (2020).
+\newblock Real-time imputation of missing predictor values in clinical
+  practice.
+\newblock {\em European Heart Journal - Digital Health}, page ztaa016.
+
 \bibitem[Oberman et~al., 2021]{ober21}
 Oberman, H.~I., {van Buuren}, S., and Vink, G. (2021).
 \newblock Missing the {{Point}}: {{Non-Convergence}} in {{Iterative Imputation
@@ -191,6 +199,12 @@ Van~Buuren, S. (2018).
 Vink, G. and {van Buuren}, S. (2014).
 \newblock Pooling multiple imputations when the sample happens to be the
   population.
+
+\bibitem[Wood et~al., 2015]{wood15}
+Wood, A.~M., Royston, P., and White, I.~R. (2015).
+\newblock The estimation and use of predictions for the assessment of model
+  performance using large samples with multiply imputed data.
+\newblock {\em Biometrical Journal. Biometrische Zeitschrift}, 57(4):614--632.
 
 \bibitem[Zhao, 2022]{zhao22}
 Zhao, Y. (2022).
