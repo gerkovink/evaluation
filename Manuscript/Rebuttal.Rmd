@@ -1,0 +1,17 @@
+---
+title: "Rebuttal"
+author: ""
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Revisions
+
+- Narrowing the scope of the manuscript to the evaluation of methodology for statistical inference, not prediction or causal inference (although inferential validity encompasses predictive validity and may thus be generalized?).
+- Emphasizing that the ideal evaluation of imputation methodology depends on the aim of the specific study (i.e. how the evaluated methods are used in practice).
+- Substituted the table with specific suggested missingness proportions for more general advice to evaluate several missingness proportions.
+- Removed (semi-)parametric
