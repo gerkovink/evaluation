@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2022.3.18)  15 SEP 2022 10:34
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2022.3.18)  15 SEP 2022 13:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -225,19 +225,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 124--124
 
 Package natbib Warning: Citation `pawe22' on page 2 undefined on input line 155.
 
-
-Package natbib Warning: Citation `pawe22' on page 2 undefined on input line 163.
-
 [2]
 
-Package natbib Warning: Citation `pawe22' on page 3 undefined on input line 185.
+Package natbib Warning: Citation `pawe22' on page 3 undefined on input line 182.
 
-[3] [4] [5]
-Underfull \vbox (badness 2698) has occurred while \output is active []
+[3] [4] [5] [6] [7] [8] [9] [10] (./Towards_a_standardized_evaluation_of_imputation_methodology.bbl [11] [12])
 
- [6] [7] [8] [9] [10] (./Towards_a_standardized_evaluation_of_imputation_methodology.bbl [11] [12])
-
-Class w-art Warning: copyrightyear 2004 in copyrightinfo differs from currentyear 2010 in Year of issueinfo on input line 542.
+Class w-art Warning: copyrightyear 2004 in copyrightinfo differs from currentyear 2010 in Year of issueinfo on input line 539.
 
 [13]
 
@@ -256,6 +250,6 @@ Here is how much of TeX's memory you used:
  22958 multiletter control sequences out of 15000+600000
  475659 words of font info for 61 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 69i,9n,76p,1955b,358s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 69i,9n,76p,1955b,370s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on Towards_a_standardized_evaluation_of_imputation_methodology.pdf (13 pages).
