@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2022.3.18)  15 SEP 2022 13:34
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2022.3.18)  16 SEP 2022 12:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -147,13 +147,36 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+) (/Users/gerko/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+ (/Users/gerko/Library/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks27
+) (/Users/gerko/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+ (/Users/gerko/Library/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+) (/Users/gerko/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-LaTeX Font Info:    Trying to load font information for TU+ptm on input line 94.
-LaTeX Font Info:    No file TUptm.fd. on input line 94.
+Package graphics Info: Driver file: xetex.def on input line 107.
+ (/Users/gerko/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/xetex.def
+File: xetex.def 2021/03/18 v5.0k Graphics/color driver for xetex
+))
+\Gin@req@height=\dimen154
+\Gin@req@width=\dimen155
+) (/Users/gerko/Library/TinyTeX/texmf-dist/tex/latex/base/latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
+)
+LaTeX Font Info:    Trying to load font information for TU+ptm on input line 95.
+LaTeX Font Info:    No file TUptm.fd. on input line 95.
 
 
 LaTeX Font Warning: Font shape `TU/ptm/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 94.
+(Font)              using `TU/lmr/m/n' instead on input line 95.
 
 (/Users/gerko/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
 File: l3backend-xetex.def 2022-02-07 L3 backend support: XeTeX
@@ -169,87 +192,92 @@ File: l3backend-xetex.def 2022-02-07 L3 backend support: XeTeX
 ) (./Towards_a_standardized_evaluation_of_imputation_methodology.aux)
 \openout1 = `Towards_a_standardized_evaluation_of_imputation_methodology.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 94.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 94.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 95.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 95.
  (/Users/gerko/Library/TinyTeX/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
 
 Can't find sidecap.sty -- will use normal caption
 
 LaTeX Font Warning: Font shape `TU/ptm/b/n' undefined
-(Font)              using `TU/ptm/m/n' instead on input line 124.
+(Font)              using `TU/ptm/m/n' instead on input line 125.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 124.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 125.
 (/Users/gerko/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 124.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 125.
  (/Users/gerko/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for TU+phv on input line 124.
-LaTeX Font Info:    No file TUphv.fd. on input line 124.
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 125.
+ (/Users/gerko/Library/TinyTeX/texmf-dist/tex/latex/base/ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+LaTeX Font Info:    Trying to load font information for TU+phv on input line 125.
+LaTeX Font Info:    No file TUphv.fd. on input line 125.
 
 
 LaTeX Font Warning: Font shape `TU/phv/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 124.
+(Font)              using `TU/lmr/m/n' instead on input line 125.
 
 
 LaTeX Font Warning: Font shape `TU/ptm/m/it' undefined
-(Font)              using `TU/ptm/m/n' instead on input line 124.
+(Font)              using `TU/ptm/m/n' instead on input line 125.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--124
+Underfull \hbox (badness 10000) in paragraph at lines 125--125
 
  []
 
 [1
 
-]
+] [2] [3] [4] [5]
+File: plots/plot_mmech.pdf Graphic file (type pdf)
+<use plots/plot_mmech.pdf>
 
-Package natbib Warning: Citation `pawe22' on page 2 undefined on input line 155.
 
-[2]
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-Package natbib Warning: Citation `pawe22' on page 3 undefined on input line 182.
 
-[3] [4] [5] [6] [7] [8] [9] [10] (./Towards_a_standardized_evaluation_of_imputation_methodology.bbl [11] [12])
+Underfull \vbox (badness 2698) has occurred while \output is active []
 
-Class w-art Warning: copyrightyear 2004 in copyrightinfo differs from currentyear 2010 in Year of issueinfo on input line 539.
+ [6]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[13]
+ [7] [8] [9] [10] (./Towards_a_standardized_evaluation_of_imputation_methodology.bbl [11] [12])
 
-Package natbib Warning: There were undefined citations.
+Class w-art Warning: copyrightyear 2004 in copyrightinfo differs from currentyear 2010 in Year of issueinfo on input line 548.
 
-(./Towards_a_standardized_evaluation_of_imputation_methodology.aux)
+[13] (./Towards_a_standardized_evaluation_of_imputation_methodology.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  )
-(\end occurred when \iffalse on line 124 was incomplete) 
+(\end occurred when \iffalse on line 125 was incomplete) 
 Here is how much of TeX's memory you used:
- 2349 strings out of 478179
- 35910 string characters out of 5853461
- 352108 words of memory out of 5000000
- 22958 multiletter control sequences out of 15000+600000
- 475659 words of font info for 61 fonts, out of 8000000 for 9000
+ 2857 strings out of 478179
+ 44360 string characters out of 5853461
+ 358679 words of memory out of 5000000
+ 23431 multiletter control sequences out of 15000+600000
+ 476295 words of font info for 67 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 69i,9n,76p,1955b,370s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 69i,9n,76p,1955b,354s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on Towards_a_standardized_evaluation_of_imputation_methodology.pdf (13 pages).
