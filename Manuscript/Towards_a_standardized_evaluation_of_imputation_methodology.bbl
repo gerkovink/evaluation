@@ -98,6 +98,13 @@ Morris, T.~P., White, I.~R., and Crowther, M.~J. (2019).
 \newblock Using simulation studies to evaluate statistical methods.
 \newblock {\em Statistics in Medicine}, 38(11):2074--2102.
 
+\bibitem[Neyman, 1934]{neym34}
+Neyman, J. (1934).
+\newblock On the {{Two Different Aspects}} of the {{Representative Method}}:
+  {{The Method}} of {{Stratified Sampling}} and the {{Method}} of {{Purposive
+  Selection}}.
+\newblock {\em Journal of the Royal Statistical Society}, 97(4):558--625.
+
 \bibitem[Nguyen et~al., 2017]{nguy17}
 Nguyen, C.~D., Carlin, J.~B., and Lee, K.~J. (2017).
 \newblock Model checking in multiple imputation: An overview and case study.
