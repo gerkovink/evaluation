@@ -12,6 +12,11 @@ Bondarenko, I. and Raghunathan, T. (2016).
   multiple imputations and imputation models.
 \newblock {\em Statistics in Medicine}, 35(17):3007--3020.
 
+\bibitem[Cai et~al., 2022]{caiPPC}
+Cai, M., van Buuren, S., and Vink, G. (2022).
+\newblock Graphical and numerical diagnostic tools to assess multiple
+  imputation models by posterior predictive checking.
+
 \bibitem[Doretti et~al., 2018]{dore18}
 Doretti, M., Geneletti, S., and Stanghellini, E. (2018).
 \newblock Missing {{Data}}: {{A Unified Taxonomy Guided}} by {{Conditional
@@ -23,6 +28,11 @@ Greenland, S. (2017).
 \newblock Invited {{Commentary}}: {{The Need}} for {{Cognitive Science}} in
   {{Methodology}}.
 \newblock {\em American Journal of Epidemiology}, 186(6):639--645.
+
+\bibitem[Honaker et~al., 2011]{amelia}
+Honaker, J., King, G., and Blackwell, M. (2011).
+\newblock {Amelia II}: A program for missing data.
+\newblock {\em Journal of Statistical Software}, 45(7):1--47.
 
 \bibitem[Li et~al., 2012]{li2012imputing}
 Li, F., Yu, Y., and Rubin, D.~B. (2012).
