@@ -6,6 +6,13 @@ Abayomi, K., Gelman, A., and Levy, M. (2008).
 \newblock {\em Journal of the Royal Statistical Society: Series C (Applied
   Statistics)}, 57(3):273--291.
 
+\bibitem[Bartlett et~al., 2015]{bart2015}
+Bartlett, J.~W., Seaman, S.~R., White, I.~R., Carpenter, J.~R., and
+  Initiative*, A. D.~N. (2015).
+\newblock Multiple imputation of covariates by fully conditional specification:
+  accommodating the substantive model.
+\newblock {\em Statistical methods in medical research}, 24(4):462--487.
+
 \bibitem[Bondarenko and Raghunathan, 2016]{bond16}
 Bondarenko, I. and Raghunathan, T. (2016).
 \newblock Graphical and numerical diagnostic tools to assess suitability of
@@ -16,6 +23,7 @@ Bondarenko, I. and Raghunathan, T. (2016).
 Cai, M., van Buuren, S., and Vink, G. (2022).
 \newblock Graphical and numerical diagnostic tools to assess multiple
   imputation models by posterior predictive checking.
+\newblock {\em arXiv preprint. arXiv:2208.12929}.
 
 \bibitem[Doretti et~al., 2018]{dore18}
 Doretti, M., Geneletti, S., and Stanghellini, E. (2018).
@@ -126,16 +134,18 @@ Nijman, S. W.~J., Hoogland, J., Groenhof, T. K.~J., Brandjes, M., Jacobs, J.
   (2020).
 \newblock Real-time imputation of missing predictor values in clinical
   practice.
-\newblock {\em European Heart Journal - Digital Health}, page ztaa016.
+\newblock {\em European Heart Journal - Digital Health}.
 
 \bibitem[Oberman et~al., 2021]{ober21}
 Oberman, H.~I., {van Buuren}, S., and Vink, G. (2021).
 \newblock Missing the {{Point}}: {{Non-Convergence}} in {{Iterative Imputation
   Algorithms}}.
+\newblock {\em arXiv preprint. arXiv:2110.11951}.
 
 \bibitem[Pawel et~al., 2022]{pawe22}
 Pawel, S., Kook, L., and Reeve, K. (2022).
 \newblock Pitfalls and {{Potentials}} in {{Simulation Studies}}.
+\newblock {\em arXiv preprint. arXiv:2110.11951}.
 
 \bibitem[Petersen and {van der Laan}, 2014]{pete14}
 Petersen, M.~L. and {van der Laan}, M.~J. (2014).
@@ -168,6 +178,7 @@ Rubin, D.~B. (1987).
 \bibitem[Schomaker, 2021]{scho21}
 Schomaker, M. (2021).
 \newblock Regression and {{Causality}}.
+\newblock {\em arXiv preprint. arXiv:2006.11754}.
 
 \bibitem[Schouten et~al., 2018]{ampute}
 Schouten, R.~M., Lugtig, P., and Vink, G. (2018).
@@ -224,7 +235,7 @@ Wood, A.~M., Royston, P., and White, I.~R. (2015).
 \bibitem[Zhao, 2022]{zhao22}
 Zhao, Y. (2022).
 \newblock Diagnostic checking of multiple imputation models.
-\newblock {\em AStA Advances in Statistical Analysis}.
+\newblock {\em AStA Advances in Statistical Analysis}, 106:271--286.
 
 \bibitem[Zhu and Raghunathan, 2015]{zhu15}
 Zhu, J. and Raghunathan, T.~E. (2015).

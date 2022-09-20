@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2021)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Towards_a_standardized_evaluation_of_imputation_methodology.aux
+The style file: apalike.bst
+Database file #1: bibliography.bib
+Warning--empty publisher in litt20
+Warning--empty publisher in liu21
+Warning--empty journal in vink14
+You've used 41 entries,
+            1935 wiz_defined-function locations,
+            725 strings with 11620 characters,
+and the built_in function-call counts, 16570 in all, are:
+= -- 1605
+> -- 738
+< -- 19
++ -- 256
+- -- 250
+* -- 1499
+:= -- 2926
+add.period$ -- 122
+call.type$ -- 41
+change.case$ -- 325
+chr.to.int$ -- 41
+cite$ -- 44
+duplicate$ -- 571
+empty$ -- 1130
+format.name$ -- 309
+if$ -- 3156
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 45
+newline$ -- 206
+num.names$ -- 123
+pop$ -- 267
+preamble$ -- 1
+purify$ -- 329
+quote$ -- 0
+skip$ -- 426
+stack$ -- 0
+substring$ -- 1201
+swap$ -- 40
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 238
+warning$ -- 3
+while$ -- 136
+width$ -- 0
+write$ -- 522
+(There were 3 warnings)
