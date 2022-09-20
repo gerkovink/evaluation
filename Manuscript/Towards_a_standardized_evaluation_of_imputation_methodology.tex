@@ -152,23 +152,17 @@ For some data analyses a single imputation may suffice, while for other data ana
 
 In all scenarios it can be said that the quality of the solution obtained by imputation depends on the statistical properties of the incomplete data and the degree to which the imputation procedure is able to capture these properties when modeling missing values. In general, it holds that modeling missing data becomes more challenging when the amount of missingness increases. However, when (strong) relations in the data are present, the observed parts can hold great predictive power for the models that estimate the missingness. In that case, imputation would be substantially more efficient than the ubiquitous complete case analysis.
 
-% In contrast to ad hoc methods for dealing with missing values (e.g. list-wise deletion), imputation allows analysts to account for the sources of uncertainty that are related to the missingness problem. With the popular variant multiple imputation \citep{rubi76}, each missing value is replaced by a plausible data value several times, resulting in multiple completed data sets. The estimated parameters of interest for each of these completed sets can be combined into a single inference using Rubin's rules \citep[][p. 76]{rubi87}. [TODO: add that if the goal is statistical inference, the uncertainty due to missingness should be quantified/captured/propagated by the missing data method. Refer to \citet{sper20} for the context of prediction, where multiple imputation is not always necessary.] [TODO: paraphrase ``the quality of a technique can only be evaluated with respect to the aims of the problem/s it's intended to solve in practice".] 
-
 When evaluating the statistical properties - and thereby the practical applicability - of imputation methodology, researchers most often make use of simulation studies. Such studies are typically composed of an analysis pipeline in which data are subsequently generated, made incomplete, and imputed repeatedly under different simulation conditions. A set of evaluation criteria is then postulated to evaluate the performance of one or more missing data methods. Recent attention on best practices for method evaluation by means of simulation \citep{morr18} and \citet{pawe22}'s advice to pre-register simulation protocols will guide methodologist in conceptualizing their simulation workflow. However, there is no consensus on how to design, execute and report simulation studies aimed to evaluate imputation methodology. Without a `gold standard' for evaluation, the validity and comparability of simulation setups may differ tremendously from one developer to another. This brings forth a chain of potential problems in the objective assessment of imputation method performance within and across studies, which could lead to sub-optimal use of imputation in practice.
 
 
-% Especially with novel imputation methods being propagated from the fields of machine learning and artificial intelligence, the differences may become more pronounced. Although these promising new methods seem to yield even sharper imputations than now-standard imputation methods, the comparison may not be fair due to the simulation setup. 
-
 The purpose of this paper is threefold: First, we raise some concerns with respect to evaluating imputation methodology. These concerns stem from careful consideration with fellow `imputers' and from encounters as reviewers for statistical journals. Second, we provide imputation methodologists with a suggested course of action when using simulation studies to evaluate imputation techniques for missing data problems. This suggested approach should identify common ground, but is in no way intended as an absolute solution. This identifies the third purpose of our paper: discussion. We hope to elicit critical thinking regarding the problems at hand. We are all convinced that our methodology has some merit. But for sake of progress, it would be much more advantageous if the aim of our evaluations would go beyond \textit{proving the point} and would legitimately consider the statistical properties. 
-% [TODO: Add advice to pre-register simulation protocols, which allows for fair comparisons of per-protocol results \citep{pawe22}.]
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %% PROBLEMS
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Why some evaluations should not be trusted}
-
-% [TODO: split up into design, execution and reporting? \citep{pawe22}]
 
 The ideal evaluation of imputation methodology may differ between studies. A simulation study developed for the comparison of several imputation methods will typically have a different design than one aimed at establishing the inferential validity of a single (novel) method. How the evaluated methods are used in practice thereby governs the simulation procedure. Since the simulation aims and setup are intertwined with the choice of the evaluated imputation methods, one should always asses the suitablity of the chosen evaluation metrics with the imputation methods' purpose in mind. 
 
@@ -187,44 +181,11 @@ One potential reason for discrepancies between imputation method performance in 
 
 Removing sampling variance from performance evaluation is computationally convenient and may potentially sharpen comparisons between imputation methods, clarifying inconclusive results on their ability to solve for missingness. However, when deviating from the standard simulation workflow, conventional pooling rules for multiple imputation \citep[cf.][p. 76-77]{rubi87} do not apply and alternative pooling rules need to be used \citep{raghunathan2003multiple,vink14}. This opens the door towards human error in the implementation and interpretation of such a simulation study. On the one hand, we highly value the additional flexibility that this design offers. Especially in the case of data transformations, it can be challenging to derive the true parametric references to evaluate against. Simply using a single generated complete set in which missingness is induced, and evaluating against that generated data set avoids a plethora of procedural problems and computational challenges. On the other hand, we want to warn simulators against potential mishaps, e.g. when calculating and comparing standard errors.
 
-% [TODO: describe problems with unclear simulation parameters, extrapolation beyond scope of simulations, QRPs \citep{pawe22} and misinterpretation \citep[see "investigator bias"][]{gree17}.]
-
-% Therefore, taking sampling variation into account is neither necessary for obtaining information about a method's ability to handle the missing data problem, nor for objectively comparing methods on their ability to correct for missingness \citep[see for a detailed discussion][]{vink14}. The only required change to simulation setups is to remove sampling variance from performance evaluation. Still, a lot of published work does not consider this option, while it could have sharpened inconclusive or obfuscated results. 
-
-% The comparative truth of the estimand(s) is determined by the choice of data-generating mechanism and whether sampling variance is included in the simulation setup, see Table \ref{table:dgm_truth}. 
-
-% If sampling variance cannot be omitted from the simulation scheme, multiple samples should be drawn from the data-generating mechanism (i.e., one sample per simulation repetition, a standard simulation setup). 
-
-% If sampling variance is not of interest, a single complete data set can be obtained from the data-generating mechanism (i.e., one sample for all simulation repetitions). 
-
-
-
-% \begin{table}[tb]
-% \begin{center}
-% \caption{Source of the comparative truth in simulation studies.}
-% \label{table:dgm_truth}
-% \begin{tabular}{lll}
-% \hline
-%                & With sampling variance      & Without sampling variance \\
-%                & (multiple samples drawn)    & (one sample drawn) \\
-% \hline  
-% Model-based simulation   & data-generating model         & single sample \\
-% Design-based simulation  & sufficiently large data set   & single sample \\
-% \hline
-% \end{tabular}
-% \end{center}
-% \end{table}
-% 
-
 A well-designed simulation does not guarantee fair evaluations. Estimands and other simulation targets should be clearly and unambiguously defined in the context of the study aim \citet{pete14}. The number of simulation repetitions may be informed by the required level of precision in the simulation study \citep[e.g. as determined from a maximum tolerable level of uncertainty in terms of a performance measure's Monte Carlo error; see][]{morr18}. The simulation design should ideally be fully factorial, i.e. varying each simulation condition against all other conditions. There may, for example, be interactions between the source and amount of missingness in the incomplete data and the efficacy of imputation methods--i.e., the validity of the assumed missingness mechanism becomes increasingly important with higher missingness proportions \citep{scho18}. If there is more than one imputation method under evaluation, the simulation design should apply each method to every incomplete data set. Applying all methods to the same incomplete data set is computationally convenient, and minimizes unnecessary variation, which makes for fairer comparisons.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Data generation}
-
-% [TODO: split up into data and missingness part of the DGM, with choices between data sources, missingness mechanisms and proportions. And divide problems between simulation and interpretation, see Reviewer 2: "whether method A (e.g. imputation) outperforms method B (e.g. listwise deletion) depends on the estimand, purpose of the study, used distributions (in the DGP, imputation model, possibly also analysis model), and simulation setup (e.g. dependency structure) - if a human misinterprets findings in a comparison of method A and B, then this is a cognitive problem and not the problem on how missingness was generated in the DGP."] 
-%
-%[TODO; describe problems with data generation and interpretation: If the source of the data is model-based, the correlations in the data may be so high that there is no effective missingness due to the predictive power in the other variables, and the data source may be unfair if the data generating model is equal to one of the imputation models under evaluation. With a design-based simulation, the data source is unlikely to have no missingness and the choice of initial missing data method may propagate into the evaluations.]
 
 To evaluate the ability of an imputation routine to handle missingness, a form of ground  truth has to be established. Those who perform simulation studies are in the luxury position to establish the truth beforehand by choosing a data-generating mechanism. Data-generating mechanisms define how a complete dataset is obtained at the start of each simulation repetition. There are two general approaches to generating complete data: (i) model-based simulation, in which data are drawn from a known statistical model or probability distribution, such as the multivariate normal distribution; and (ii) design-based simulation, where data are sampled from a sufficiently large observed set, such as official registers. The simulator should choose their data-generating mechanism in line with the study scope. Model-based data-generating mechanisms have advantages in flexibility and precision, since data are generated from a known statistical model and the true theoretical parameters can be derived. A design-based approach is often used in situations where a probability distribution is not available, or where real-life data structures are of interest.
 
@@ -237,18 +198,7 @@ An obvious problem with design-based simulation is that obtaining a large datase
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% 1a. choose DGM (if model-based: choose n_obs, n_var, relations between var, var types, etc; if design-based: choose n_obs, missing data handling strategy)
-% 1b. decide if sampling variance is needed
-% 1c. draw complete sample(s)
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \subsection{Missingness generation}
-
-% [TODO: Make clear in this section that missingness mechanisms can be spurious (spurious MAR when correlations are too low, or when missingness proportion is too low). In reporting, the functional form or type of missingness is often omitted. As advice, MCAR can be a very informative mechnism for reference and MNAR may be useful for practice. Missingness proportions can be misinterpreted. Missingness pattern may have unexpected consequences (e.g., univariately generated multivariate missingness). In interpretation, watch out for generalizations from unintended special cases.]
-
-% Evaluating imputation methodology requires a missing data problem to be solved. After establishing a comparative truth from a data-generating mechanism, some form of missingness therefore has to be induced.
 
 Often reports of simulation studies remain vague about the missingness conditions under investigation and, even worse, some authors only report something like:
 \begin{quote}
@@ -256,42 +206,10 @@ Often reports of simulation studies remain vague about the missingness condition
 \end{quote}
 This should be considered unacceptable, as claims about the validity of the imputation inference heavily depend on the simulated missingness conditions, such as missingness mechanisms and missingness patterns. Missingness mechanisms describe the relationship between missing entries and observed data values whereas missingness patterns concern the location of missing entries across incomplete data \citep[][p. 8]{litt20}. Under this definition, there is a row-wise element to the missingness pattern describing which variables are jointly observed, and a column-wise element encompassing the amount of missingness in the data. 
 
-% \begin{table}[tb]
-% \begin{center}
-% \caption{Missingness mechanisms. [TODO: add refs \citet{seam13, meal15, dore18} for clarification and alternatives outlined in \citet{moha21, scho21, more18}]}
-% \label{table:mech}
-% \begin{tabular}{lll}
-% \hline
-%       & Interpretation and consequences of the mechanism \\
-% \hline  
-% MCAR  & Missing completely at random: The probability to be missing is the same for all \\
-%       & cases. In other words, the missing values are missing at random and the observed \\
-%       & values are observed at random. \\ \noalign{\smallskip}
-% MAR   & Missing at random: The probability to be missing is the same within groups of \\
-%       & cases defined by the observed data only. The essence is that observed relations in \\
-%       & the data inform the missingness, such that MCAR may be assumed within the \\ 
-%       & observed groups. \\ \noalign{\smallskip}
-% v-MAR & Conditional on the fully observed variables missingness occurs at random 
-%       & \citep[][p. 1026]{moha21}.\\
-% MNAR  & Missing not at random: The probability to be missing depends on unobserved \\
-%       & aspects of the data. The cause of the missingness is unknown and cannot be \\ 
-%       & inferred from the observed data. This is considered non-ignorable missingness \\
-%       & \citep[see e.g.][]{rubi76}. \\
-% \hline
-% \end{tabular}
-% \end{center}
-% \end{table}
-
 Even the terminology on missingness generation can be confusing. Does a missingness proportion of 50\% mean that half of the entries in an incomplete dataset are missing, or that half of the rows have at least one missing entry? In this paper, we will henceforth refer to the latter as the proportion of incomplete cases, and keep the term `missingness proportion' restricted to the variable-by-variable interpretation. The distinction between the two concepts, however, is not always clear in the literature, and convoluting the terms may lead to incorrect generalizations because they rarely mean the same (e.g., a proportion of 50\% incomplete cases in bivariate data could translate to a missingness proportion of 25\% in both variables, or one completely observed variable and one with 50\% missingness). Simulators should therefore be explicit in their description of the missing data generating model and should make sure that the model fits the aim of their simulations. 
-
-% Moreover, the value of the actual missingness proportion may be diffusing too. Some studies use only 10\% missingness whereas other studies push the limits to additionally investigate the performance under missingness proportions of at least 50\%. The inconsistent display of simulation conditions may impact the objectivity of meta-evaluations over imputation methods, as one method's performance may appear to be favorable because of less stringent simulation conditions. This ultimately may lead to statisticians recommending a less efficient method to applied researchers, thereby limiting the efficiency of the imputation approach and unnecessarily lowering the statistical power.
-
-% Another aspect of missingness patterns that may misguide evaluations is the complexity of the patterns across variables. It is hardly reasonable to imagine empirical data with only one incomplete variable, yet some simulation studies rely on univariate missingness patterns anyways.
 
 Extrapolating simulation results from a specific missing data generating model to more intricate (empirical) missingness could lead to sub-optimal advice in practice. For example, if a simulator induces missingness in the outcome variable of their analysis model exclusively, they may inadvertedly induce missingness according to the special case descibed by \citet[][p. \S 2.7]{buur18}. Under this specific missingness model, list-wise deletion may outperform any imputation method. Such a conclusion would, unfortunately, only translate to data that adhere to the same special case, while biasing inferences in other cases. % Another example of a missingness pattern that may inadvertently impose assumptions on generalizations is a monotone pattern \citep[i.e. a pattern with uniformly increasinmissingness proportions along variables;][]{litt20}. If a simulator investigates iterative imputation methods under monotone missingness, they might believe that the evaluated imputation algorithms converge instantly, while these methods actually require iteration to produce valid results in all other situations. 
 Another example of potential side-effects of missingness generation may occur when multivariate missingness is generated using step-wise univariate missingness induction. The resulting incomplete data may then not have the desired statistical properties \citep{ampute}. This complicates any definitive conclusions about imputation method performance in relation to the data generation parameters.
-
-% Missingness mechanisms are usually assumed to be random (MAR; see Table \ref{table:mech} for definitions). However, the missingness mechanisms that are induced in simulation studies do not necessarily match any true missingness generating mechanisms in incomplete empirical data, nor the mechanisms that are typically assumed when imputing such data. On the one hand, there is MCAR missingness, which is unlikely to be the true missingness generating mechanism, but would yield insightful evaluations in a simulation setting. On the other hand, there is MNAR, which is arguably a quite reasonable source of many real-world missingness scenarios but is generally ignored except for those evaluations that are specifically targeted at non-ignorable applications. A disconnect between induced missingness, real missingness, and assumed missingness may result in simulation studies that are not as informative as they could be. 
 
 Missingness should be induced according to several sets of missing data conditions. We encourage simulators to consider different missingness patterns and mechanisms. Missingness mechanisms were first defined in Rubin's seminal work \citep{rubi76}. For more recent considerations see e.g. \citet{seam13, meal15, dore18, more18, scho18, litt20, moha21, scho21}. Although not every missingness mechanism is realistically assumed in practice, they can all offer valuable insights as simulation condition. A disconnect between induced missingness, real missingness, and assumed missingness may result in simulation studies that are not as informative as they could be.
 
@@ -301,7 +219,7 @@ Besides MCAR missingness, observed-data dependent missingness mechanisms--such a
 
 Inducing a MAR mechanism presents the simulator with a choice, namely the type or functional form of the missingness model. Given the simulated data distributions, one random missingness model may be far more disastrous to the observed information than another model \citep{scho18}. This may influence the performance of some (but not necessarily all) imputation routines. For example, inference from hot-deck techniques such as predictive mean matching \citep{little1988missing, rubin1986statistical} may be more severely impacted by large amounts of one-tailed missingness than inference from parametric techniques. It would be a shame to overlook such results due to the focus on a single functional form of the missingness-generating model.
 
-Although MAR missingness is often considered as a simulation condition, the problem of spurious MAR is generally overlooked. With MAR missingness mechanisms, observed relations in the data are used to induce missingness during simulation (e.g. weight is made incomplete based on observed gender to mimic a situation wherein one gender is less likely to disclose their weight). These relations in the observed data may, however, be weak or non-existent. If MAR is induced based on weaker relations in the true data, claims for a method's applicability to situations where the missingness is random become less valid. The most extreme example would be when MAR is induced from data without multivariate relations. The inferential implications of the missingness would then mimic those of MCAR, even though the missingness is generated randomly (see Figure 1). In fact, this would amount to one of the special cases under which complete case analysis would be more efficient than imputation \citep[see e.g.][\S 2.7]{buur18}: the missingness does not depend on the incomplete variable. This property might be useful in practice, but considering it as a condition to evaluate performance under MAR missingness is pointless. 
+Although MAR missingness is often considered as a simulation condition, the problem of spurious MAR is generally overlooked. With MAR missingness mechanisms, observed relations in the data are used to induce missingness during simulation (e.g. weight is made incomplete based on observed gender to mimic a situation wherein one gender is less likely to disclose their weight). These relations in the observed data may, however, be weak or non-existent. If MAR is induced based on weaker relations in the true data, claims for a method's applicability to situations where the missingness is random become less valid. The most extreme example would be when MAR is induced from data without multivariate relations. The inferential implications of the missingness would then mimic those of MCAR, even though the missingness is generated randomly (see Figure 1). In fact, this would amount to one of the special cases described by \citet{buur18} under which complete case analysis would be more efficient than imputation: the missingness does not depend on the incomplete variable. This property might be useful in practice, but considering it as a condition to evaluate performance under MAR missingness is pointless. 
 
 \begin{figure}[t!]
   \resizebox{\textwidth}{!}{ %notice the \resizebox{} command
@@ -313,85 +231,27 @@ Although MAR missingness is often considered as a simulation condition, the prob
 
 A non-ignorable or MNAR mechanism--where the unobserved values themselves may also play a role in the probability to be missing--might fall outside many studies' scope, yet could yield informative insights for daily practice. Even if an imputation method is specifically developed with ignorable missingness in mind, chances are that the method will be applied to non-ignorable empirical missingness at some point in time. After all, for every MNAR mechanism there is a MAR mechanism with equal fit and one cannot definitively verify that empirical missingness is random \citep{molenberghs2008every}. Therefore, it can be argued that MNAR is the more likely mechanism for real-life missingness scenarios. It may be wise to include MNAR missingness in the simulation study just in case. Alternatively, a sensitivity analysis may provide an indication of the validity of the obtained inference, given that the assumed missingness mechanism is suspected to be invalid \citep[see e.g.][part 5]{molenberghs2014handbook}.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% 2a. choose missingness mechanism(s): at least consider MCAR, vary MAR types
-% 2b. choose missing data pattern(s): introduce non-monotone multivariate missingness
-% 2c. choose missingness proportion(s): at least consider 10, 25 and 50\%
-
- 
-
-% First, one should always consider MCAR missingness (see Table \ref{table:mech} for definitions). This mechanism should be used as a reference condition. Every imputation method must be able to yield valid imputations under MCAR, both in terms of distributional characteristics as well as statistical inference.
-% 
-% Next, missing data should be induced conform a model that is dependent on the observed data (i.e. a MAR mechanism). Arguably, MAR is the most often-assumed mechanism in practice, and should thus be evaluated carefully. 
-
-
 In addition to varying the missingness mechanisms, each simulated mechanism should be combined with different missingness patterns. Remember that missingness is only ignorable under MAR when the parameter of the data is distinct and a-priori independent from the parameter of the missing data process \citep[Corollary 6.1A]{litt20}. Under MAR missingness we assume that we may use the observed data to make inferences about the joint (observed and unobserved) data. The dependency of the procedure on the assumption under which we obtain inference is only influenced by the amount of missingness. If there is no missingness--or if there is no data, for that matter-- the inference does not depend on the assumption.
 
 Alternatively, the validity of assumptions becomes increasingly important when the missingness increases. Since we control the MAR mechanism, the assumption under which we may solve the missing data problem should hold and it is only fair to assess performance under stringent missingness conditions. We, therefore, propose to evaluate imputation methodology under several missingness proportions to amulate a realistic range in severity of the missingness problem. Depending on how the missingness mechanism interacts with the simulated data, higher missingness proportions may yield biased or invalid completed data inferences. The missingness proportions should therefore be considered carefully.
 
 The above emphasizes the need for both thorough evaluation and thorough documentation of the intended and used missingness mechanisms. Simulators must be make clear which mechanisms are of interest. To be able to verify these mechanisms, simulators must also be transparant about the process that generated the missingness. For example by sharing the code or detailing the process that generated the missing values. Alternatively, missingness generation devices, such as the \texttt{mice::ampute()} function can be used to generate valid, pattern-based missingness in any structured data set \citep{mice, ampute}. Finally, simulators must include simulation conditions and evaluation parameters that make it possible to identify the proper generation of missing values. This would prevent that errors in the missingness generation would go unnoticed. 
 
-% \begin{table}[htb]
-% \begin{center}
-% \caption{Suggested univariate missingness proportions. [TODO: change this to 'more than one missingness proportion, depending on the context' and/or add references for the given proportions (e.g. about  that 30\% is a good range for MI).]}
-% \label{table:prop}
-% \begin{tabular}{lll}
-% \hline
-%       & Reasoning for suggested missingness proportion \\
-% \hline  
-% 10\%  & Depending on the size of the data, this percentage can be considered as a lower \\
-%       & bound of realistic evaluation. Anything less than 10\% may be of little influence on \\
-%       & the true data inference. Performance of a missing data method should at least be \\
-%       & acceptable for most missing data problems. \\ \noalign{\smallskip} % & \\
-% 25\%  & This is a fair amount of missingness and will, depending on the observed data \\
-%       & information, have a noticeable influence on the completed data inference. When \\
-%       & compared to the condition with 10\% missingness, the inference obtained under \\
-%       & 25\% missingness should be less certain (i.e. confidence/credibility interval width \\
-%       & should increase), but estimates should still be properly covered and the statistical \\
-%       & properties of the missing data method should be sound. In practice, at least to our \\
-%       & at least to our experience in social sciences and official statistics, 25\% \\
-%       & univariate missingness can easily be considered as a realistic missingness percentage. \\ \noalign{\smallskip} % & \\
-% 50\%  & Performance under 50\% percent simulated missingness will most likely be impacted \\ 
-%       & severely. Depending on how the missingness mechanism interacts with the simulated \\
-%       & data, some imputation techniques may yield estimates that are under-covered such that \\
-%       & the completed data inference should not be deemed valid anymore. If a method yields \\
-%       & acceptable inference under 50\% MAR missingness, we can determine that the statistical \\
-%       & properties of the imputation methodology are sound. \\
-% \hline
-% \end{tabular}
-% \end{center}
-% \end{table}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \subsection{Imputation methods}
-
-% 3a. Define missing data methods: at least consider complete case analysis as benchmark
-% 3b. Choose imputation model parameters: appropriate n_imp and n_it (if applicable), maybe vary predictor matrices?
-% 3c. Impute the data
-% 3d. Obtain estimates
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Performance evaluation}
-The evaluation criteria used to assess imputation performance vary from one simulator to another. This is not surprising as people from different fields could have a different focus on the problem at hand. There are, however, some overarching issues when assessing imputation method performance. In the first place, there are pitfalls in the evaluation of the estimates that are obtained by fitting the analysis model after imputation. For example, focusing on one performance measure over another, may yield different conclusions about imputation efficacy. In the second place, diagnostic evaluation of the generated imputations is often left out of simulation study results. Identifying problems with the imputation-generating process (e.g., an iterative imputation algorithm) may offer explanations for under-performance of imputation methods. Such evaluations, however, are typically omitted and valuable insights into the imputation method(s) may then be overlooked. %(i.e. the complete-data model used to estimate the comparative truth). % The choice of performance measures might inadvertently influence simulation results.
+The evaluation criteria used to assess imputation performance vary from one simulator to another. This is not surprising as people from different fields could have a different focus on the problem at hand. There are, however, some overarching issues when assessing imputation method performance. In the first place, there are pitfalls in the evaluation of the estimates that are obtained by fitting the analysis model after imputation. For example, focusing on one performance measure over another, may yield different conclusions about imputation efficacy. In the second place, diagnostic evaluation of the generated imputations is often left out of simulation study results. Identifying problems with the imputation-generating process (e.g., an iterative imputation algorithm) may offer explanations for under-performance of imputation methods. Such evaluations, however, are typically omitted and valuable insights into the imputation method(s) may then be overlooked. 
 
 At minimum, imputation method performance should be quantified using appropriate measures. It depends on the specifics of each simulation study which performance measures would be most suitable. We recommend to evaluate at least the following points:
 
-(i) The estimates should preferably be unbiased. Note that the way bias is calculated should be carefully chosen and described, since this can greatly influence the interpretation of the results. A negligible absolute bias, for example, may already yield an almost infinite relative bias if the true value of the estimand is zero. In most cases, unbiased estimates may be expected under a MCAR missingness mechanism which can be easily verified by including MCAR missingness to the scope of missingness investigations.
+(i) The methods should preferably be unbiased. Note that the way bias is calculated should be carefully chosen and described, since this can greatly influence the interpretation of the results. A negligible absolute bias, for example, may already yield an almost infinite relative bias if the true value of the estimand is zero. In most cases, unbiased estimates may be expected under a MCAR missingness mechanism which can be easily verified by including MCAR missingness to the scope of missingness investigations.
 
 (ii) The intervals for estimates should have a valid coverage of the population (i.e. true) value. Coverage of a 95\% interval should in theory be $\geq 95$, where a coverage rate of 95\% would be most efficient \citep[p. 589]{neym34}. Under-coverage indicates that the procedure is not confidence valid and may lead to invalid inference. Under-coverage may occur when the estimation procedure is either biased, too liberal leading to intervals that are too narrow, or both. Over-coverage, though technically not confidence invalid, would indicate that efficiency could still be gained. In such cases, a narrower interval exists for which the method would still yield confidence valid result. 
 
-% "Note that Neyman's original description of confidence intervals defined the property of randomisation validity as exactly 100(1_alpha) of intervals containing theta.44-46 Confidence validity is the property that the true percentage is at least 100(1_alpha). This latter definition is less well known than the former, with the result that overcoverage and undercoverage are sometimes regarded as similarly bad.47 Of course, randomisation validity would usually be preferred over confidence validity because it implies shorter intervals, but this is not always the case. There are examples of procedures that return both shorter intervals and higher coverage.45, 46" ADEMP paper
-
 (iii) The width of the confidence or credible interval may convey statistical efficiency, which should be considered to compare imputation methods. Wider intervals are associated with more uncertainty whereas a more narrow interval that is still properly covered indicates a sharper inference. However, inference from a wider interval that is properly covered is to be considered more valid than a more narrow interval that is not properly covered anymore. That said, with valid nominal coverage, the method that yields the narrowest interval would be most efficient. 
 
-(iv) Predictive accuracy may be quantified using the root mean squared error (RMSE). We do not generally recommend the use of the RMSE as evaluation criterion, because this metric does not account for the inherent uncertainty of the missing values and it may increase the rate of false positives \citep[Chapter 2.6][]{buur18}. However, if a study is aimed at obtaining predictions, and inferential validity is not of interest, the RMSE of the predicted values can be compared between method, which may yield valuable information about the methods' efficiency in terms of both accuracy and precision. 
+(iv) Predictive accuracy may be quantified using the root mean squared error (RMSE). We do not generally recommend the use of the RMSE as evaluation criterion, because this metric does not account for the inherent uncertainty of the missing values and it may increase the type I error rate of the statistical inferences \citep[Chapter 2.6][]{buur18}. However, if a study is aimed at obtaining predictions, and inferential validity is not of interest, the RMSE of the predicted values can be compared between method, which may yield valuable information about the methods' efficiency in terms of both accuracy and precision. 
 
 If the goal is inference--not prediction-- then the uncertainty about estimates needs to be properly quantified. To capture this uncertainty, the standard errors of the estimates should be correctly calculated, which requires multiple imputation. The aim of multiple imputation is not to reproduce the data, but to allow for obtaining valid inference given that the data are incomplete. This means that, given the framework provided by \citet{rubi87}, statistical properties such as bias, confidence intervals, and the coverage rate of the confidence intervals should always be studied. 
 
@@ -416,51 +276,7 @@ There are parallels between evaluating the performance and evaluating the missin
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-% 4a. Evaluate imputations: check failed methods, algorithmic convergence (if applicable)
-% 4b. Check imputation model fit: anomalies in distributional characteristics, plausibility of imputed values (if requested), PPC
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-% 4c. Apply performance measures: at least consider bias, coverage, CI length, if applicable also RMSE (at prediction and/or cell level)
-% fraction of missing information (= model parameter), variance inflation
-
-
 Last, when the simulator is on the verge of drawing conclusions about the performance of the imputation methodology, the performance should be carefully qualified. Comparing the performance of an imputation routine given a population (or true) parameter allows for quantitative evaluation. Yet, in order to pose qualitative statements about the performance on simulated conditions, comparative methodology is required. For example, when claiming that imputation performance is unacceptable when deviations from normality become rather stringent, such performance is highly dependent on the simulation conditions that are used. For a well-balanced judgment about the severity of the performance drop, comparative simulations with e.g. nonparametric models should be executed. A method may perform badly, but if it still outperforms every other approach, it may yet be of great practical relevance.
-
-% It could be convincing to demonstrate a method's applicability to real-world missing data problems. This can, for example, be achieved by obtaining and imputing a fully observed set of variables, wherein the missingness is mimicked from a similar, incomplete set. Alternatively, an incomplete set could be obtained and truth could be established by removing the incomplete cases from the data. However, the real-world missingness would then be omitted. 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \subsection{Reporting}
-
-
-% 
-% \begin{table}[tb]
-% \begin{center}
-% \caption{Steps to consider in imputation simulation studies.}
-% \label{table:steps}
-% \begin{tabular}{lll}
-% \hline
-%                         & Simulation aspects under consideration \\
-% \hline  
-% 1. Set scope            & Aim(s), missing data method(s) to evaluate, simulation design \\
-% 2. Obtain truth         & Data-generating mechanism(s), estimand(s), sampling variance \\
-% 3. Induce missingness   & Missingness mechanism(s), missing data pattern(s) \\
-% 4. Apply methods        & Imputation method(s), analytic method(s) \\
-% 5. Evaluate imputations & Imputation-generating process, imputation model fit \\
-% 6. Evaluate performance & Performance measures, qualitative judgment \\
-% 7. Report               & Text, visualization, checklist, simulation script \\
-% \hline
-% \end{tabular}
-% \end{center}
-% \end{table}
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
