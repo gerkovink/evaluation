@@ -1,6 +1,6 @@
 # Towards a standardized evaluation of imputation routines
 
-This repository is dedicated to the manuscript 'Towards a standardized evaluation of imputation routines', written by Hanne Oberman and Gerko Vink.
+This repository serves as a data and publication archive for the manuscript 'Towards a standardized evaluation of imputation routines', written by Hanne Oberman and Gerko Vink.
 
 ## Contents
 
