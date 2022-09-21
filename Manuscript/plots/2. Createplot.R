@@ -22,6 +22,7 @@ levels(data$mech) <- c("MCAR",
 p <- ggplot(data, aes(Y, p.mis, colour = factor(mech)) ) + 
   geom_point() + 
   geom_smooth(method = "lm", colour = "black") + 
+  theme_classic() +
   scale_colour_discrete(guide="none") + 
   facet_grid(. ~ mech, labeller = label_parsed) + 
   ylab("Probability to be missing") + 
