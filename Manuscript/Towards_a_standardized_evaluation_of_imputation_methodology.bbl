@@ -158,6 +158,12 @@ Raghunathan, T.~E., Reiter, J.~P., and Rubin, D.~B. (2003).
 \newblock Multiple imputation for statistical disclosure limitation.
 \newblock {\em Journal of Official Statistics}, 19(1):1.
 
+\bibitem[Robins and Gill, 1997]{robins1997}
+Robins, J.~M. and Gill, R.~D. (1997).
+\newblock Non-response models for the analysis of non-monotone ignorable
+  missing data.
+\newblock {\em Statistics in medicine}, 16(1):39--56.
+
 \bibitem[Rubin, 1976]{rubi76}
 Rubin, D.~B. (1976).
 \newblock Inference and {{Missing Data}}.

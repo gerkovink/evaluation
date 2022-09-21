@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex Towards_a_standardized_evaluation_of_imputation_methodology"] 1663682658 "Towards_a_standardized_evaluation_of_imputation_methodology.aux" "Towards_a_standardized_evaluation_of_imputation_methodology.bbl" "Towards_a_standardized_evaluation_of_imputation_methodology" 1663684103
+["bibtex Towards_a_standardized_evaluation_of_imputation_methodology"] 1663770669 "Towards_a_standardized_evaluation_of_imputation_methodology.aux" "Towards_a_standardized_evaluation_of_imputation_methodology.bbl" "Towards_a_standardized_evaluation_of_imputation_methodology" 1663771252
   "/usr/local/texlive/2021/texmf-dist/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "Towards_a_standardized_evaluation_of_imputation_methodology.aux" 1663684103 5902 02a13b3c97845849aacc88088f6b3c09 "pdflatex"
-  "bibliography.bib" 1663683867 83329 9c56fbe9b22465c92d8d29df727c8513 ""
+  "Towards_a_standardized_evaluation_of_imputation_methodology.aux" 1663770943 5998 d39ae14345ca0a04538ebf4e4805e7dd "pdflatex"
+  "bibliography.bib" 1663770496 83619 6fd32967100433855acbe7f90daa5991 ""
   (generated)
   "Towards_a_standardized_evaluation_of_imputation_methodology.blg"
   "Towards_a_standardized_evaluation_of_imputation_methodology.bbl"
-["pdflatex"] 1663684103 "Towards_a_standardized_evaluation_of_imputation_methodology.tex" "Towards_a_standardized_evaluation_of_imputation_methodology.pdf" "Towards_a_standardized_evaluation_of_imputation_methodology" 1663684103
+["pdflatex"] 1663770943 "Towards_a_standardized_evaluation_of_imputation_methodology.tex" "Towards_a_standardized_evaluation_of_imputation_methodology.pdf" "Towards_a_standardized_evaluation_of_imputation_methodology" 1663771252
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1136768653 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -109,11 +109,11 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1616695603 5169178 a2ce6e2d73f603b690db6777d06dbccb ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1647940680 2724741 6234ef09a4671ad1e39da351dc87686b ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
-  "Towards_a_standardized_evaluation_of_imputation_methodology.aux" 1663684103 5902 02a13b3c97845849aacc88088f6b3c09 "pdflatex"
-  "Towards_a_standardized_evaluation_of_imputation_methodology.bbl" 1663683867 10299 5c90bc02e66d33cc74906b6d7bd08691 "bibtex Towards_a_standardized_evaluation_of_imputation_methodology"
-  "Towards_a_standardized_evaluation_of_imputation_methodology.tex" 1663684102 66116 ad21ee52f7aae5a00407da13eab5a061 ""
+  "Towards_a_standardized_evaluation_of_imputation_methodology.aux" 1663770943 5998 d39ae14345ca0a04538ebf4e4805e7dd "pdflatex"
+  "Towards_a_standardized_evaluation_of_imputation_methodology.bbl" 1663770669 10525 62a4414d22661f7aa552fb01f4f75389 "bibtex Towards_a_standardized_evaluation_of_imputation_methodology"
+  "Towards_a_standardized_evaluation_of_imputation_methodology.tex" 1663770943 51436 4d63c95f5cb04f1e713bf16b2fb7dd62 ""
   "natbib.sty" 1663318624 38471 e736c9e81fc46d182180d3bcc734620b ""
-  "plots/plot_mmech.pdf" 1663330752 90390 49094dd36bbea1e6297f8ab068c2db93 ""
+  "plots/plot_mmech.pdf" 1663769284 89758 6aaabd36826616db888580dda57990ec ""
   "w-art.cls" 1663318624 59590 6de2f04c41bfe010c2983678a59759f9 ""
   "w-bimj.clo" 1663318624 7252 07bba5b883747a2bffe0d707b238f0dc ""
   "w-thm.sty" 1663318624 3546 e044db6b4bdeac8d9a583fb6793fea56 ""
