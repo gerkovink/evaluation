@@ -306,40 +306,36 @@ We thank the Amices team for the fruitful discussions.
 
 \subsection*{A.1.\enspace Reporting guidelines}
 
-Table \ref{table:check} provides a checklist for reporting on imputation methodology evaluations. 
+Table \ref{table:check} provides a checklist for reporting on imputation methodology evaluations. We have structured the checklist according to simulation study reporting format proposed by \citet{morr18}.  
 
 \begin{table}[ht!]
 \caption{Checklist for reporting on imputation methodology evaluations.}
 \label{table:check}
 \begin{tabular}{ll}
-% \hline
-%   & Suggested aspects to report                                                       \\
 \hline
-1 & Simulation scope                                                                   \\ \cline{2-2}
-$\square$  & Aim                                                                                \\
-$\square$  & Design (incl. pseudo-code or flow diagram)                                         \\
-$\square$  & Number of simulation repetitions                                                   \\ \hline
-2 & Data generation                                                                  \\ \cline{2-2}
-$\square$  & Data source (e.g. model-based or design-based, sampling variance)                                           \\
-%  & Data characteristics (number of observations, number of variables, variable types, \\
-%  & coherence between variables incl. data structures e.g. clustering)                 \\
-$\square$  & Data characteristics (incl. multivariate relations and structures e.g. clustering) \\
-$\square$  & Estimand                                                                           \\ \hline 
-3 & Missingness generation                                                                \\ \cline{2-2}
-$\square$  & Missingness mechanism (incl. type or functional form of the missing data model)  \\
-$\square$  & Missingness pattern (incl. missingness proportions)                                 \\ \hline 
-4 & Methods                                                                    \\ \cline{2-2}
-$\square$  & Imputation methods (incl. parameters e.g. the number of imputations)               \\
-$\square$  & Analytic methods (incl. calculation of standard errors e.g. pooling rules)       \\
-$\square$  & Reference methods (e.g. complete case analysis)                                    \\ \hline 
-6 & Performance evaluation                                                             \\ \cline{2-2}
-$\square$  & Statistical properties (e.g. confidence validity)                                  \\
-$\square$  & Comparative performance (e.g. predictive accuracy)                                 \\ \hline
-$\square$  & Imputation-generating process (e.g. algorithmic non-convergence)                   \\
-$\square$  & Imputation model fit (e.g. posterior predictive checks)                            \\
-$\square$  & Distributional characteristics (e.g. plausibility of imputed values)               \\ \hline 
+$\square$ & \textbf{Aims}                                                                                  \\
+  & e.g. simulation scope                                                                          \\ \cline{2-2} 
+  & $\square$ simulation design (incl. pseudo-code or flow diagram)                                        \\
+  & $\square$ required level of precision (incl. number of simulation   repetitions)                       \\ \hline
+$\square$ & \textbf{Data-generating mechanisms}                                                            \\
+  & e.g. data generation and missingness generation                                                \\ \cline{2-2} 
+  & $\square$ data source (incl. model-based or design-based, sampling   variance)                         \\
+  & $\square$ data characteristics (incl. multivariate relations and data   structures such as clustering) \\
+  & $\square$ missingness mechanisms (incl. type or functional form of the   missing data model)           \\
+  & $\square$ missingness patterns (incl. missingness proportion)                                          \\ \hline
+$\square$ & \textbf{Estimands}                                                                             \\
+  & e.g. complete data target                                                                      \\ \hline
+$\square$ & \textbf{Methods}                                                                               \\
+  & e.g. missing data methods and analytic method                                                  \\ \cline{2-2} 
+  & $\square$ imputation methods (incl. parameters such as the number of   imputations)                    \\
+  & $\square$ estimation method (incl. reference methods such as complete   case analysis)                 \\ \hline
+$\square$ & \textbf{Performance measures}                                                                  \\
+  & e.g. evaluation of estimates and imputed values                                                \\ \cline{2-2} 
+  & $\square$ statistical properties (incl. comparative performance, if   applicable)                      \\
+  & $\square$ validity of imputations (incl. imputation model fit and   distributional characteristics)    \\ \hline
 \end{tabular}
 \end{table}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
