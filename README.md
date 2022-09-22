@@ -12,4 +12,4 @@ The manuscript relies on simulated data only, which is used to illustrate differ
 
 ## Contribution
 
-We invite others for discussion and to contribute to our proposed checklist for the evaluation of imputation routines.
+We invite others for discussion and to contribute to our proposed checklist for the evaluation of imputation routines. The version of the checklist included in the manuscript has been published on [Research Equals](https://doi.org/10.53962/vrd3-8h76).
