@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.8)  17 NOV 2022 15:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.8)  17 NOV 2022 19:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -378,12 +378,7 @@ File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3]
-[4]
-
-Package natbib Warning: Citation `robins1997' on page 5 undefined on input line
- 217.
-
-[5]
+[4] [5]
 <plots/plot_mmech.pdf, id=30, 578.16pt x 216.81pt>
 File: plots/plot_mmech.pdf Graphic file (type pdf)
 <use plots/plot_mmech.pdf>
@@ -391,50 +386,29 @@ Package pdftex.def Info: plots/plot_mmech.pdf  used on input line 232.
 (pdftex.def)             Requested size: 578.15858pt x 216.80946pt.
  [6]
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 2
-59.
+63.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Underfull \vbox (badness 1184) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [7 <./plots/plot_mmech.pdf>] [8]
-
-Package natbib Warning: Citation `bart2015' on page 9 undefined on input line 2
-79.
-
-
-Package natbib Warning: Citation `caiPPC' on page 9 undefined on input line 287
-.
-
-
-Package natbib Warning: Citation `amelia' on page 9 undefined on input line 287
-.
-
-
-Package natbib Warning: Citation `caiPPC' on page 9 undefined on input line 287
-.
-
-[9] [10] [11]
+ [7 <./plots/plot_mmech.pdf>] [8] [9] [10] [11]
 (./Towards_a_standardized_evaluation_of_imputation_methodology.bbl [12]
 [13])
 
 Class w-art Warning: copyrightyear 2004 in copyrightinfo differs from currentye
-ar 2010 in Year of issueinfo on input line 377.
+ar 2010 in Year of issueinfo on input line 384.
 
-[14]
-
-Package natbib Warning: There were undefined citations.
-
-(./Towards_a_standardized_evaluation_of_imputation_methodology.aux) )
+[14] (./Towards_a_standardized_evaluation_of_imputation_methodology.aux) )
 (\end occurred when \iffalse on line 128 was incomplete) 
 Here is how much of TeX's memory you used:
- 5238 strings out of 474971
- 87958 string characters out of 5776123
- 435617 words of memory out of 5000000
- 26620 multiletter control sequences out of 15000+600000
+ 5244 strings out of 474971
+ 88010 string characters out of 5776123
+ 434814 words of memory out of 5000000
+ 26626 multiletter control sequences out of 15000+600000
  499579 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,9n,77p,1931b,381s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 69i,9n,77p,1973b,381s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/202
 2/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2022/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2022/texmf-dist/fon
@@ -451,7 +425,7 @@ etic/uhvr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/times/utmb8
 a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></us
 r/local/texlive/2022/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
 Output written on Towards_a_standardized_evaluation_of_imputation_methodology.p
-df (14 pages, 282296 bytes).
+df (14 pages, 284343 bytes).
 PDF statistics:
  131 PDF objects out of 1000 (max. 8388607)
  84 compressed objects within 1 object stream
