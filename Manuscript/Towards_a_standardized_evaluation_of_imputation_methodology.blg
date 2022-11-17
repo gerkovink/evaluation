@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Towards_a_standardized_evaluation_of_imputation_methodology.aux
+The style file: apalike.bst
+Database file #1: bibliography.bib
+Warning--I didn't find a database entry for "robins1997"
+Warning--I didn't find a database entry for "bart2015"
+Warning--I didn't find a database entry for "caiPPC"
+Warning--I didn't find a database entry for "amelia"
+Warning--empty publisher in litt20
+Warning--empty publisher in liu21
+Warning--empty note in ober21
+Warning--empty journal in vink14
+You've used 41 entries,
+            1935 wiz_defined-function locations,
+            726 strings with 11686 characters,
+and the built_in function-call counts, 16759 in all, are:
+= -- 1627
+> -- 768
+< -- 21
++ -- 268
+- -- 262
+* -- 1516
+:= -- 2950
+add.period$ -- 118
+call.type$ -- 41
+change.case$ -- 331
+chr.to.int$ -- 41
+cite$ -- 45
+duplicate$ -- 573
+empty$ -- 1115
+format.name$ -- 323
+if$ -- 3195
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 41
+newline$ -- 202
+num.names$ -- 123
+pop$ -- 270
+preamble$ -- 1
+purify$ -- 335
+quote$ -- 0
+skip$ -- 439
+stack$ -- 0
+substring$ -- 1209
+swap$ -- 51
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 238
+warning$ -- 4
+while$ -- 136
+width$ -- 0
+write$ -- 514
+(There were 8 warnings)
