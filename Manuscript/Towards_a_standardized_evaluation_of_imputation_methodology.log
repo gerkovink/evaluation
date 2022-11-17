@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.8)  17 NOV 2022 19:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.8)  17 NOV 2022 21:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -365,6 +365,12 @@ LaTeX Font Info:    Trying to load font information for OT1+phv on input line 1
 File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
 )
 Underfull \hbox (badness 10000) in paragraph at lines 128--128
+|  \OT1/ptm/m/n/10 Sup-port-ing in-for-ma-tion and a sim-u-la-tion archive are 
+avail-able from
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 128--128
 
  []
 
@@ -425,7 +431,7 @@ etic/uhvr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/times/utmb8
 a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></us
 r/local/texlive/2022/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
 Output written on Towards_a_standardized_evaluation_of_imputation_methodology.p
-df (14 pages, 284343 bytes).
+df (14 pages, 284341 bytes).
 PDF statistics:
  131 PDF objects out of 1000 (max. 8388607)
  84 compressed objects within 1 object stream
