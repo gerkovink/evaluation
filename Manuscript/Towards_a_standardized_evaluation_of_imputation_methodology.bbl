@@ -26,7 +26,7 @@ Bondarenko, I. and Raghunathan, T. (2016).
 \newblock {\em Statistics in Medicine}, 35(17):3007--3020.
 
 \bibitem[Cai et~al., 2022]{caiPPC}
-Cai, M., van Buuren, S., and Vink, G. (2022).
+Cai, M., {Van Buuren}, S., and Vink, G. (2022).
 \newblock Graphical and numerical diagnostic tools to assess multiple
   imputation models by posterior predictive checking.
 \newblock {\em arXiv preprint. arXiv:2208.12929}.
@@ -164,8 +164,8 @@ Oberman, H.~I., {van Buuren}, S., and Vink, G. (2021).
 Pawel, S., Kook, L., and Reeve, K. (2022).
 \newblock Pitfalls and {{Potentials}} in {{Simulation Studies}}.
 
-\bibitem[Petersen and {van der Laan}, 2014]{pete14}
-Petersen, M.~L. and {van der Laan}, M.~J. (2014).
+\bibitem[Petersen and {Van der Laan}, 2014]{pete14}
+Petersen, M.~L. and {Van der Laan}, M.~J. (2014).
 \newblock Causal {{Models}} and {{Learning}} from {{Data}}: {{Integrating
   Causal Modeling}} and {{Statistical Estimation}}.
 \newblock {\em Epidemiology}, 25(3):418--426.
@@ -243,13 +243,19 @@ Van~Buuren, S. (2018).
 \newblock {\em Flexible Imputation of Missing Data}.
 \newblock {Chapman and Hall/CRC}.
 
-\bibitem[Van~Buuren and {Groothuis-Oudshoorn}, 2011]{mice}
-Van~Buuren, S. and {Groothuis-Oudshoorn}, K. (2011).
+\bibitem[{Van Buuren} and {Groothuis-Oudshoorn}, 2011]{mice}
+{Van Buuren}, S. and {Groothuis-Oudshoorn}, K. (2011).
 \newblock Mice: {{Multivariate Imputation}} by {{Chained Equations}} in {{R}}.
 \newblock {\em Journal of Statistical Software}, 45(1):1--67.
 
-\bibitem[Vink and {van Buuren}, 2014]{vink14}
-Vink, G. and {van Buuren}, S. (2014).
+\bibitem[Vink, 2022]{simmiss}
+Vink, G. (2022).
+\newblock Strategies for simulating missingness.
+  https://www.gerkovink.com/simulate.
+\newblock {\em GitHub repository. https://doi.org/10.5281/zenodo.7467995}.
+
+\bibitem[Vink and {Van Buuren}, 2014]{vink14}
+Vink, G. and {Van Buuren}, S. (2014).
 \newblock Pooling multiple imputations when the sample happens to be the
   population.
 
