@@ -1,3 +1,6 @@
+[![DOI](https://zenodo.org/badge/449704829.svg)](https://zenodo.org/badge/latestdoi/449704829)
+
+
 # Towards a standardized evaluation of imputation routines
 
 This repository serves as a data and publication archive for the manuscript 'Towards a standardized evaluation of imputation routines', written by Hanne Oberman and Gerko Vink.
