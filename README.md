@@ -3,7 +3,9 @@
 
 # Towards a standardized evaluation of imputation routines
 
-This repository serves as a data and publication archive for the manuscript 'Towards a standardized evaluation of imputation routines', written by Hanne Oberman and Gerko Vink.
+This repository serves as a data and publication archive for the manuscript 'Towards a standardized evaluation of imputation methodology', written by Hanne Oberman and Gerko Vink. To cite the paper, please use:
+
+> Oberman, H. I., & Vink, G. (2023). Toward a standardized evaluation of imputation methodology. Biometrical Journal, e2200107. https://doi.org/10.1002/bimj.202200107
 
 ## Contents
 
